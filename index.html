@@ -1,0 +1,1561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>30-Day Ball Striking Plan — Fix the Two-Way Miss</title>
+<style>
+:root {
+  --green-dark: #1a472a;
+  --green-mid: #2d6a4f;
+  --green-light: #40916c;
+  --green-pale: #b7e4c7;
+  --cream: #f8f6f0;
+  --sand: #e8e0d0;
+  --text: #1a1a1a;
+  --text-light: #555;
+  --accent: #d4a843;
+  --red: #c0392b;
+  --blue: #2980b9;
+  --white: #fff;
+  --shadow: 0 2px 8px rgba(0,0,0,0.1);
+  --shadow-lg: 0 4px 20px rgba(0,0,0,0.12);
+  --radius: 12px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+
+/* Hero */
+.hero {
+  background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 50%, var(--green-light) 100%);
+  color: var(--white);
+  padding: 60px 20px 50px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0; right: 0;
+  height: 40px;
+  background: var(--cream);
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+}
+.hero h1 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.5px; }
+.hero .subtitle { font-size: 1.1rem; opacity: 0.9; font-weight: 300; }
+.hero .tagline {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  margin-top: 16px;
+  backdrop-filter: blur(4px);
+}
+
+/* Nav */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--white);
+  border-bottom: 1px solid var(--sand);
+  padding: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  box-shadow: var(--shadow);
+}
+.nav-inner {
+  display: flex;
+  gap: 0;
+  max-width: 800px;
+  margin: 0 auto;
+  min-width: max-content;
+}
+.nav a {
+  display: block;
+  padding: 14px 18px;
+  text-decoration: none;
+  color: var(--text-light);
+  font-size: 0.85rem;
+  font-weight: 500;
+  white-space: nowrap;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s;
+}
+.nav a:hover, .nav a.active {
+  color: var(--green-dark);
+  border-bottom-color: var(--green-dark);
+}
+
+/* Sections */
+section { padding: 40px 0; }
+section + section { border-top: 1px solid var(--sand); }
+
+h2 {
+  font-size: 1.5rem;
+  color: var(--green-dark);
+  margin-bottom: 20px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+h3 {
+  font-size: 1.15rem;
+  color: var(--green-mid);
+  margin: 24px 0 12px;
+  font-weight: 600;
+}
+h4 {
+  font-size: 1rem;
+  color: var(--text);
+  margin: 16px 0 8px;
+  font-weight: 600;
+}
+
+p { margin-bottom: 14px; color: var(--text); }
+p.muted { color: var(--text-light); font-size: 0.95rem; }
+
+/* Cards */
+.card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow);
+  border-left: 4px solid var(--green-light);
+}
+.card.diagnosis { border-left-color: var(--red); }
+.card.key-point { border-left-color: var(--accent); }
+.card.drill { border-left-color: var(--blue); }
+.card.video { border-left-color: var(--green-dark); background: #f0f7f0; }
+
+.card-label {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+.card-label.diag { background: #fde8e8; color: var(--red); }
+.card-label.key { background: #fef3cd; color: #856404; }
+.card-label.drill-label { background: #d6eaf8; color: var(--blue); }
+.card-label.video-label { background: var(--green-pale); color: var(--green-dark); }
+.card-label.week-label { background: var(--green-dark); color: var(--white); }
+
+/* Week tabs */
+.week-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+.week-tab {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 2px solid var(--sand);
+  background: var(--white);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+  color: var(--text-light);
+}
+.week-tab:hover { border-color: var(--green-light); color: var(--green-mid); }
+.week-tab.active {
+  background: var(--green-dark);
+  color: var(--white);
+  border-color: var(--green-dark);
+}
+
+.week-content { display: none; }
+.week-content.active { display: block; }
+
+/* Day blocks */
+.day-block {
+  background: var(--white);
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.day-header {
+  padding: 16px 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--white);
+  transition: background 0.2s;
+  user-select: none;
+}
+.day-header:hover { background: #f5f5f0; }
+.day-header h4 { margin: 0; font-size: 1rem; }
+.day-header .duration {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  background: var(--sand);
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+.day-header .chevron {
+  font-size: 1.2rem;
+  color: var(--text-light);
+  transition: transform 0.3s;
+}
+.day-block.open .day-header .chevron { transform: rotate(180deg); }
+.day-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+.day-block.open .day-body { max-height: 3000px; }
+.day-body-inner { padding: 0 20px 20px; }
+
+/* Drill steps */
+.drill-step {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 14px;
+  align-items: flex-start;
+}
+.drill-num {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  background: var(--green-dark);
+  color: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-top: 2px;
+}
+.drill-text { flex: 1; font-size: 0.95rem; }
+.drill-text strong { color: var(--green-dark); }
+
+/* Video links */
+.video-link {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 16px;
+  background: #f0f7f0;
+  border-radius: 8px;
+  margin: 10px 0;
+  text-decoration: none;
+  color: var(--text);
+  transition: all 0.2s;
+  border: 1px solid var(--green-pale);
+}
+.video-link:hover {
+  background: var(--green-pale);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
+}
+.video-icon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  background: var(--red);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.video-icon svg { width: 18px; height: 18px; fill: white; }
+.video-info { flex: 1; }
+.video-title { font-weight: 600; font-size: 0.9rem; }
+.video-coach { font-size: 0.8rem; color: var(--text-light); }
+
+/* Checklist */
+.checklist { list-style: none; padding: 0; }
+.checklist li {
+  padding: 8px 0 8px 32px;
+  position: relative;
+  font-size: 0.95rem;
+  border-bottom: 1px solid #f0ede5;
+}
+.checklist li:last-child { border-bottom: none; }
+.checklist li::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 11px;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--sand);
+  border-radius: 4px;
+  cursor: pointer;
+}
+.checklist li.checked::before {
+  background: var(--green-mid);
+  border-color: var(--green-mid);
+}
+.checklist li.checked::after {
+  content: '✓';
+  position: absolute;
+  left: 7px;
+  top: 9px;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+/* Key concept callouts */
+.callout {
+  background: linear-gradient(135deg, #fef9e7, #fef3cd);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin: 20px 0;
+  border-left: 4px solid var(--accent);
+}
+.callout-title {
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #856404;
+  margin-bottom: 6px;
+}
+
+.callout.green {
+  background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+  border-left-color: var(--green-mid);
+}
+.callout.green .callout-title { color: var(--green-dark); }
+
+/* Progress tracker */
+.progress-bar {
+  width: 100%;
+  height: 12px;
+  background: var(--sand);
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 16px 0;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--green-light), var(--green-dark));
+  border-radius: 6px;
+  transition: width 0.5s ease;
+}
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+/* Camera setup diagrams */
+.camera-diagram {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin: 16px 0;
+}
+.camera-angle {
+  flex: 1;
+  min-width: 200px;
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+.camera-angle .angle-icon {
+  font-size: 2.5rem;
+  margin-bottom: 8px;
+}
+.camera-angle h4 { margin-top: 0; text-align: center; }
+.camera-angle ul {
+  text-align: left;
+  font-size: 0.85rem;
+  padding-left: 16px;
+  color: var(--text-light);
+}
+.camera-angle li { margin-bottom: 4px; }
+
+/* Responsive */
+@media (max-width: 600px) {
+  .hero { padding: 40px 16px 36px; }
+  .hero h1 { font-size: 1.6rem; }
+  .container { padding: 0 16px; }
+  .card { padding: 18px; }
+  .week-tabs { gap: 6px; }
+  .week-tab { padding: 8px 14px; font-size: 0.85rem; }
+  .camera-diagram { flex-direction: column; }
+}
+
+/* Print */
+@media print {
+  .nav, .hero::after { display: none; }
+  .day-body { max-height: none !important; }
+  section { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>Fix the Two-Way Miss</h1>
+  <p class="subtitle">A 30-Day Ball Striking Plan</p>
+  <div class="tagline">Block Right & Pull-Hook — Eliminated</div>
+</div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#diagnosis">Diagnosis</a>
+    <a href="#plan">30-Day Plan</a>
+    <a href="#drills">Drill Library</a>
+    <a href="#videos">Video Guide</a>
+    <a href="#camera">Film Your Swing</a>
+    <a href="#strategy">Course Strategy</a>
+  </div>
+</nav>
+
+<div class="container">
+
+<!-- ==================== DIAGNOSIS ==================== -->
+<section id="diagnosis">
+  <h2>Your Diagnosis</h2>
+
+  <div class="card diagnosis">
+    <span class="card-label diag">The Problem</span>
+    <h3 style="margin-top:0">The Two-Way Miss: Push-Right & Pull-Hook</h3>
+    <p>Out of 100 balls, you're hitting roughly 40 push-right (or push-fade), 40 pull-hooks, and 20 straight. Your good shot is a draw. This is one of the most common patterns for skilled golfers — and it has a clear mechanical cause.</p>
+  </div>
+
+  <div class="card key-point">
+    <span class="card-label key">Root Cause</span>
+    <h3 style="margin-top:0">Excessively In-to-Out Path + Timing-Dependent Face</h3>
+    <p>Your swing path is pointing too far right of your target (likely +4 to +8 degrees in-to-out). From that exaggerated inside path, two things happen:</p>
+    <ul style="margin: 12px 0 12px 20px;">
+      <li><strong>Push-right:</strong> The clubface is open to the target but roughly square to your (too-inside) path. Ball starts right and stays right.</li>
+      <li><strong>Pull-hook:</strong> Your hands instinctively flip to close the face. When they over-rotate, the face snaps closed relative to the path. Ball starts left and curves more left.</li>
+      <li><strong>Good draw:</strong> The flip timing happens to be perfect — face is slightly closed to path, slightly open to target. This is a 20% window.</li>
+    </ul>
+    <p style="margin-bottom:0"><strong>The core issue is not your hands.</strong> It's that your path is so far inside that the margin for correct face angle is impossibly small. You're playing a timing game you can't win consistently.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-title">Why This Happens</div>
+    <p style="margin-bottom:0">Three mechanical contributors typically drive this pattern:<br><br>
+    <strong>1. Getting "stuck":</strong> The club drops too far behind your body in the downswing. Your hips outrace your arms, and your hands have to rescue the club through impact with a flip.<br><br>
+    <strong>2. Early extension:</strong> Your hips thrust toward the ball instead of rotating. This traps the arms and forces the torso to stand up through impact.<br><br>
+    <strong>3. Inside takeaway:</strong> The club drags too far inside in the first 12 inches, setting up the stuck position from the start.</p>
+  </div>
+
+  <div class="card">
+    <span class="card-label key">The Fix — Overview</span>
+    <h3 style="margin-top:0">Moderate the Path, Train the Rotation</h3>
+    <p>You do NOT need to rebuild your swing. Your natural draw tendency is an asset. The plan is to:</p>
+    <ol style="margin: 12px 0 0 20px;">
+      <li><strong>Neutralize your path</strong> from +6 degrees to +1 to +3 degrees — still a draw, but with a much wider margin for face error</li>
+      <li><strong>Train continuous body rotation</strong> through impact so the face squares naturally without a hand flip</li>
+      <li><strong>Fix the takeaway</strong> so the club doesn't get trapped behind you in the first place</li>
+      <li><strong>Build a stock 3-5 yard draw</strong> you can repeat under pressure</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ==================== 30-DAY PLAN ==================== -->
+<section id="plan">
+  <h2>The 30-Day Plan</h2>
+  <p class="muted">3-4 days per week, 30-60 minutes per session. Each day is designed to be done at the range or at home (marked accordingly).</p>
+
+  <div id="progress-section">
+    <div class="progress-label">
+      <span>Progress</span>
+      <span id="progress-pct">0%</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+    </div>
+  </div>
+
+  <div class="week-tabs">
+    <button class="week-tab active" data-week="1">Week 1</button>
+    <button class="week-tab" data-week="2">Week 2</button>
+    <button class="week-tab" data-week="3">Week 3</button>
+    <button class="week-tab" data-week="4">Week 4</button>
+  </div>
+
+  <!-- WEEK 1 -->
+  <div class="week-content active" id="week-1">
+    <div class="card">
+      <span class="card-label week-label">Week 1 — Awareness & Takeaway</span>
+      <p>This week is about understanding what's happening and fixing the root: your takeaway and initial backswing position. No full-speed swings yet — controlled reps to build new feel.</p>
+    </div>
+
+    <div class="day-block" data-day="1">
+      <div class="day-header">
+        <h4>Day 1 — Diagnosis & Baseline</h4>
+        <div style="display:flex;gap:8px;align-items:center">
+          <span class="duration">45 min | Range</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="day-body"><div class="day-body-inner">
+        <p><strong>Goal:</strong> See your current pattern with fresh eyes. Establish a baseline.</p>
+
+        <div class="drill-step">
+          <div class="drill-num">1</div>
+          <div class="drill-text"><strong>Film your swing</strong> (see <a href="#camera">Camera Setup</a> section). Capture 5 swings face-on and 5 down-the-line with a 7-iron.</div>
+        </div>
+
+        <div class="drill-step">
+          <div class="drill-num">2</div>
+          <div class="drill-text"><strong>Hit 30 balls with a 7-iron</strong> at a specific target. After each shot, note: push-right, pull-hook, or straight. Tally them up. This is your Week 1 baseline ratio.</div>
+        </div>
+
+        <div class="drill-step">
+          <div class="drill-num">3</div>
+          <div class="drill-text"><strong>Alignment stick check:</strong> Lay a stick on the ground pointing at your target. Set up to it. Hit 10 more balls. Is the stick pointing where you think it is? Many golfers with a push-right miss aim left to compensate — which makes the pull-hook worse.</div>
+        </div>
+
+        <div class="drill-step">
+          <div class="drill-num">4</div>
+          <div class="drill-text"><strong>Watch before next session:</strong></div>
+        </div>
+
+        <a href="https://www.youtube.com/watch?v=xZX0ApMN1r4" target="_blank" class="video-link">
+          <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          <div class="video-info">
+            <div class="video-title">Control the Club Face at Impact</div>
+            <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+          </div>
+        </a>
+
+        <a href="https://www.youtube.com/watch?v=yBr_9QxZseU" target="_blank" class="video-link">
+          <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          <div class="video-info">
+            <div class="video-title">How to Get Unstuck in the Golf Swing</div>
+            <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+          </div>
+        </a>
+      </div></div>
+    </div>
+
+    <div class="day-block" data-day="2">
+      <div class="day-header">
+        <h4>Day 2 — Takeaway Reset</h4>
+        <div style="display:flex;gap:8px;align-items:center">
+          <span class="duration">30 min | Range or Home</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="day-body"><div class="day-body-inner">
+        <p><strong>Goal:</strong> Fix the first 18 inches of your swing. Stop the club from dragging inside.</p>
+
+        <div class="drill-step">
+          <div class="drill-num">1</div>
+          <div class="drill-text"><strong>Takeaway checkpoint drill (15 min):</strong> With a 7-iron, make slow takeaways stopping when the shaft is parallel to the ground. Check: the clubhead should be outside your hands, toe pointing up. If the clubhead is behind your hands, you're too inside. Repeat 30 times slowly.</div>
+        </div>
+
+        <div class="drill-step">
+          <div class="drill-num">2</div>
+          <div class="drill-text"><strong>Width drill — Chris Mayson's key concept (10 min):</strong> Feel like you're pushing the grip end away from your body in the takeaway. The lead arm should stay extended, creating a wide arc. Think: "Reach away, not around." Make half-swings only, focusing on this wider takeaway.</div>
+        </div>
+
+        <div class="drill-step">
+          <div class="drill-num">3</div>
+          <div class="drill-text"><strong>If at the range:</strong> Hit 20 balls with this wider takeaway feel. Use 3/4 swings only, 7-iron. Don't worry about where the ball goes — just groove the new takeaway.</div>
+        </div>
+
+        <a href="https://www.youtube.com/watch?v=nyb11lvrSP0" target="_blank" class="video-link">
+          <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          <div class="video-info">
+            <div class="video-title">The Coach of World #1s Added Width to My Swing</div>
+            <div class="video-coach">Chris Mayson — Golf Digest Top 50 Teacher</div>
+          </div>
+        </a>
+
+        <a href="https://www.youtube.com/shorts/k35SBaaNeZs" target="_blank" class="video-link">
+          <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          <div class="video-info">
+            <div class="video-title">Takeaway and Backswing Training</div>
+            <div class="video-coach">Michael Alexander — Alexander Golf</div>
+          </div>
+        </a>
+      </div></div>
+    </div>
+
+    <div class="day-block" data-day="3">
+      <div class="day-header">
+        <h4>Day 3 — Path Awareness</h4>
+        <div style="display:flex;gap:8px;align-items:center">
+          <span class="duration">45 min | Range</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="day-body"><div class="day-body-inner">
+        <p><strong>Goal:</strong> Feel the difference between your current (too inside) path and a more neutral path.</p>
+
+        <div class="drill-step">
+          <div class="drill-num">1</div>
+          <div class="drill-text"><strong>Alignment stick gate drill (15 min):</strong> Place two alignment sticks in the ground about 8 inches apart, angled so they create a gate just outside the ball. Your clubhead must pass through the gate into the ball. If you're swinging too far from the inside, you'll hit the outer stick. Start with slow half-swings, then gradually increase speed. 7-iron.</div>
+        </div>
+
+        <div class="drill-step">
+          <div class="drill-num">2</div>
+          <div class="drill-text"><strong>"Swing left" feel (15 min):</strong> This will feel completely wrong at first. Set up normally, then feel like you're swinging the club out to left field (for a righty). You're not actually swinging over the top — you're just counteracting your deeply ingrained inside path. Hit 20 balls with a 7-iron trying to hit gentle fades. If you can hit a fade, your path is getting closer to neutral.</div>
+        </div>
+
+        <div class="drill-step">
+          <div class="drill-num">3</div>
+          <div class="drill-text"><strong>Alternate: draw-fade-draw-fade (15 min):</strong> Hit 10 balls alternating intentional draws and fades. The goal isn't shot shape perfection — it's proving you can influence path direction. Most two-way-miss golfers cannot intentionally hit a fade. Learning to do so is the cure.</div>
+        </div>
+
+        <a href="https://www.youtube.com/watch?v=mNcP7mEmrJE" target="_blank" class="video-link">
+          <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          <div class="video-info">
+            <div class="video-title">STOP Pushing the Ball Right (Hockey Stick + New Drills)</div>
+            <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+          </div>
+        </a>
+      </div></div>
+    </div>
+
+    <div class="day-block" data-day="4">
+      <div class="day-header">
+        <h4>Day 4 — Feet Together + Rotation</h4>
+        <div style="display:flex;gap:8px;align-items:center">
+          <span class="duration">30 min | Range</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="day-body"><div class="day-body-inner">
+        <p><strong>Goal:</strong> Feel proper body rotation without sway or early extension.</p>
+
+        <div class="drill-step">
+          <div class="drill-num">1</div>
+          <div class="drill-text"><strong>Feet-together drill (15 min):</strong> Put your feet completely together. Hit 25 balls with a 7-iron, 3/4 swing. This drill makes it physically impossible to sway, slide, or get stuck. If you can hit it solid with feet together, your rotation is working. Note: you will lose distance. That's fine — you're training sequencing.</div>
+        </div>
+
+        <div class="drill-step">
+          <div class="drill-num">2</div>
+          <div class="drill-text"><strong>Rotation checkpoint (5 min):</strong> After the feet-together balls, return to normal stance. Make slow-motion swings and stop at impact. Check: is your belt buckle turning toward the target? Is your chest rotating through? If your body stalls and your hands flip, that's the hook factory. You want continuous rotation.</div>
+        </div>
+
+        <div class="drill-step">
+          <div class="drill-num">3</div>
+          <div class="drill-text"><strong>Full swings with new feels (10 min):</strong> Hit 15 balls at 80% speed combining: wider takeaway + rotation through impact. Tally your results vs. Day 1 baseline.</div>
+        </div>
+
+        <a href="https://www.youtube.com/watch?v=uy7C7-6nhgM" target="_blank" class="video-link">
+          <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          <div class="video-info">
+            <div class="video-title">Stop Fighting with Your Hook and Pulled Golf Shots</div>
+            <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+          </div>
+        </a>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- WEEK 2 -->
+  <div class="week-content" id="week-2">
+    <div class="card">
+      <span class="card-label week-label">Week 2 — Path Correction & Body Training</span>
+      <p>You've built awareness. Now we ingrain the neutral path and proper rotation with higher-intensity drills. This is the hardest week — the new feels will be uncomfortable. Trust the process.</p>
+    </div>
+
+    <div class="day-block" data-day="5">
+      <div class="day-header">
+        <h4>Day 5 — The Fade Challenge</h4>
+        <div style="display:flex;gap:8px;align-items:center">
+          <span class="duration">45 min | Range</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="day-body"><div class="day-body-inner">
+        <p><strong>Goal:</strong> Intentionally hit fades to retrain your path toward neutral. If you can hit a controlled fade, you've broken the in-to-out stranglehold.</p>
+
+        <div class="drill-step">
+          <div class="drill-num">1</div>
+          <div class="drill-text"><strong>Warm up (10 min):</strong> Takeaway checkpoint drill (10 reps). Then feet-together drill (10 balls).</div>
+        </div>
+
+        <div class="drill-step">
+          <div class="drill-num">2</div>
+          <div class="drill-text"><strong>Intentional fade practice (20 min):</strong> Open your stance slightly (feet pointing ~10 yards left of target). Swing along your foot line. Feel like the club exits left after impact. Use 7-iron. Hit 30 balls trying to start the ball straight or slightly left and fade it gently right. Don't worry if they go dead straight — that's actually perfect. It means your path is neutral.</div>
+        </div>
+
+        <div class="drill-step">
+          <div class="drill-num">3</div>
+          <div class="drill-text"><strong>Stock draw with neutral path (15 min):</strong> Now close the stance very slightly (feet 3-5 yards right). Swing along your foot line. Hit 15 balls. This should produce your goal: a controlled 3-5 yard draw with a moderate in-to-out path, not the exaggerated version you've been fighting.</div>
+        </div>
+
+        <a href="https://www.youtube.com/watch?v=bjCCUp4vuQk" target="_blank" class="video-link">
+          <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          <div class="video-info">
+            <div class="video-title">How to Curve the Ball (Train Your Game Ep. 12)</div>
+            <div class="video-coach">Chris Mayson</div>
+          </div>
+        </a>
+      </div></div>
+    </div>
+
+    <div class="day-block" data-day="6">
+      <div class="day-header">
+        <h4>Day 6 — Early Extension Fix</h4>
+        <div style="display:flex;gap:8px;align-items:center">
+          <span class="duration">30 min | Home or Range</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="day-body"><div class="day-body-inner">
+        <p><strong>Goal:</strong> Train your hips to rotate, not thrust. This is the physical foundation for consistent face control.</p>
+
+        <div class="drill-step">
+          <div class="drill-num">1</div>
+          <div class="drill-text"><strong>Wall/chair drill (10 min):</strong> Set up with your backside lightly touching a wall or chair. Make slow-motion swings. Your glutes must maintain contact through impact. If your hips thrust toward the ball, you lose contact. This is the feel of proper rotation without early extension. 20 reps.</div>
+        </div>
+
+        <div class="drill-step">
+          <div class="drill-num">2</div>
+          <div class="drill-text"><strong>Hip rotation isolation (10 min):</strong> Cross your arms over your chest, take your address position. Rotate your hips as if making a downswing — the lead hip should clear back and behind you, not slide toward the target. Do 20 reps, holding the "impact" position for 3 seconds each time. Your belt buckle should face the target while your hips stay back.</div>
+        </div>
+
+        <div class="drill-step">
+          <div class="drill-num">3</div>
+          <div class="drill-text"><strong>If at the range:</strong> Hit 15 balls with a 7-iron, at 70% speed, focusing solely on keeping your hips back while rotating through. Accept bad contact — you're training a motor pattern.</div>
+        </div>
+
+        <a href="https://www.youtube.com/watch?v=3ydc4EgJvqU" target="_blank" class="video-link">
+          <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          <div class="video-info">
+            <div class="video-title">How to Get and Stay Unstuck in the Golf Swing</div>
+            <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+          </div>
+        </a>
+      </div></div>
+    </div>
+
+    <div class="day-block" data-day="7">
+      <div class="day-header">
+        <h4>Day 7 — Driver Day</h4>
+        <div style="display:flex;gap:8px;align-items:center">
+          <span class="duration">45 min | Range</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="day-body"><div class="day-body-inner">
+        <p><strong>Goal:</strong> Apply the path and rotation fixes to the driver. The driver amplifies every path error — if you can control it here, you own it everywhere.</p>
+
+        <div class="drill-step">
+          <div class="drill-num">1</div>
+          <div class="drill-text"><strong>Warm up with 7-iron (10 min):</strong> Feet-together drill (10 balls), then full swings with fade intent (5 balls), then stock draw (5 balls).</div>
+        </div>
+
+        <div class="drill-step">
+          <div class="drill-num">2</div>
+          <div class="drill-text"><strong>Driver — 3/4 speed only (15 min):</strong> Tee the ball up. Hit 15 drivers at 75% speed. Focus on: wider takeaway, rotation through impact, and the feel of swinging slightly "left" through the ball. Don't chase distance. A straight 230 beats a hooked 270 into the trees every time.</div>
+        </div>
+
+        <div class="drill-step">
+          <div class="drill-num">3</div>
+          <div class="drill-text"><strong>Driver — fade attempts (10 min):</strong> Try to hit 10 gentle fades with the driver. Open stance slightly, swing along your feet. If you can fade a driver, you have path control. If every fade attempt still draws or hooks, your path is still too inside — go back to the gate drill.</div>
+        </div>
+
+        <div class="drill-step">
+          <div class="drill-num">4</div>
+          <div class="drill-text"><strong>Driver — stock shot (10 min):</strong> Hit 10 drivers with your normal setup, trying for a 3-5 yard draw at 85% speed. Tally: push / hook / good / fade.</div>
+        </div>
+
+        <a href="https://www.youtube.com/watch?v=zDiwPiWM7qM" target="_blank" class="video-link">
+          <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          <div class="video-info">
+            <div class="video-title">How to Hit a Driver Straight</div>
+            <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+          </div>
+        </a>
+
+        <a href="https://www.youtube.com/watch?v=wyU_SC7reXw" target="_blank" class="video-link">
+          <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          <div class="video-info">
+            <div class="video-title">Can a Top 50 Golf Instructor Fix My Swing?</div>
+            <div class="video-coach">Chris Mayson Lesson</div>
+          </div>
+        </a>
+      </div></div>
+    </div>
+
+    <div class="day-block" data-day="8">
+      <div class="day-header">
+        <h4>Day 8 — Integration & Iron Consistency</h4>
+        <div style="display:flex;gap:8px;align-items:center">
+          <span class="duration">45 min | Range</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="day-body"><div class="day-body-inner">
+        <p><strong>Goal:</strong> Combine all Week 1-2 drills into a flowing practice. Work through the bag.</p>
+
+        <div class="drill-step">
+          <div class="drill-num">1</div>
+          <div class="drill-text"><strong>Warm up progression (10 min):</strong> Takeaway checkpoints (5 reps) → feet-together (5 balls) → half-swing fades (5 balls).</div>
+        </div>
+
+        <div class="drill-step">
+          <div class="drill-num">2</div>
+          <div class="drill-text"><strong>Club ladder (20 min):</strong> Hit 3 balls each with: PW, 8-iron, 6-iron, 4-iron/hybrid, driver. Same feel for each: wide takeaway, rotate through, gentle draw. Note which clubs still produce the two-way miss. Longer clubs will be harder — that's expected.</div>
+        </div>
+
+        <div class="drill-step">
+          <div class="drill-num">3</div>
+          <div class="drill-text"><strong>9-ball grid (15 min):</strong> Place 9 balls in a 3×3 grid. Row 1: fade. Row 2: straight. Row 3: draw. Use 7-iron. Work through all 9, pausing between each to reset. This is the single best drill for building face-to-path awareness.</div>
+        </div>
+
+        <a href="https://www.youtube.com/watch?v=OzRDyfIrPEk" target="_blank" class="video-link">
+          <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          <div class="video-info">
+            <div class="video-title">The Best Golf Drills to Instantly Improve Ball Striking</div>
+            <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+          </div>
+        </a>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- WEEK 3 -->
+  <div class="week-content" id="week-3">
+    <div class="card">
+      <span class="card-label week-label">Week 3 — Grooving the Stock Shot</span>
+      <p>The new path should be starting to feel less foreign. This week is about repetition, building trust, and extending the changes to all clubs. We also introduce on-course thinking.</p>
+    </div>
+
+    <div class="day-block" data-day="9">
+      <div class="day-header">
+        <h4>Day 9 — Stock Draw Factory</h4>
+        <div style="display:flex;gap:8px;align-items:center">
+          <span class="duration">45 min | Range</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="day-body"><div class="day-body-inner">
+        <p><strong>Goal:</strong> Hammer the stock 3-5 yard draw with a 7-iron until it's automatic.</p>
+
+        <div class="drill-step">
+          <div class="drill-num">1</div>
+          <div class="drill-text"><strong>Warm up (10 min):</strong> Feet-together (10 balls), focusing on clean contact and rotation.</div>
+        </div>
+
+        <div class="drill-step">
+          <div class="drill-num">2</div>
+          <div class="drill-text"><strong>Stock draw — 50 balls (30 min):</strong> Pick a specific target (a flag, a yardage sign). Set up with your alignment stick on the ground. Every ball gets the same routine: look at target, one practice swing feeling the wide takeaway, address, swing with rotation. After every 10 balls, tally push/hook/good. You should see the "good" percentage climbing.</div>
+        </div>
+
+        <div class="drill-step">
+          <div class="drill-num">3</div>
+          <div class="drill-text"><strong>Compare to baseline (5 min):</strong> Look at your Day 1 tally vs. today. Write down the numbers.</div>
+        </div>
+
+        <div class="callout green">
+          <div class="callout-title">Benchmark</div>
+          <p style="margin-bottom:0">By Day 9, you should be hitting 35-40% good shots (up from 20%). If you're still at 20%, revisit the gate drill and fade practice from Week 2 — your path hasn't moved enough yet.</p>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="day-block" data-day="10">
+      <div class="day-header">
+        <h4>Day 10 — Full Bag Rotation</h4>
+        <div style="display:flex;gap:8px;align-items:center">
+          <span class="duration">45 min | Range</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="day-body"><div class="day-body-inner">
+        <p><strong>Goal:</strong> Apply the stock draw to every club. The feel should be the same — only ball position and swing length change.</p>
+
+        <div class="drill-step">
+          <div class="drill-num">1</div>
+          <div class="drill-text"><strong>Warm up (10 min):</strong> Gate drill (10 slow swings) → full speed 7-iron draws (5 balls).</div>
+        </div>
+
+        <div class="drill-step">
+          <div class="drill-num">2</div>
+          <div class="drill-text"><strong>Ascending ladder (20 min):</strong> Hit 5 balls each: SW, PW, 8i, 6i, 4i/hybrid, 3-wood, driver. Same setup routine, same feels. After each club, note if the miss pattern changes. Common: the miss gets worse as clubs get longer. If your 6-iron and above are still mostly push/hook, spend more time on the fade drill with those clubs specifically.</div>
+        </div>
+
+        <div class="drill-step">
+          <div class="drill-num">3</div>
+          <div class="drill-text"><strong>Simulated holes (15 min):</strong> Pick 5 targets at different distances. For each one: choose the right club, commit to one target, hit one ball. Don't hit a second — just like on the course, you get one shot. Note the result and move on. This trains commitment, which is critical for eliminating the two-way miss.</div>
+        </div>
+
+        <a href="https://www.youtube.com/watch?v=JsT2ASvaSHY" target="_blank" class="video-link">
+          <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          <div class="video-info">
+            <div class="video-title">3 Tips to Help You Hit Your Irons Consistently</div>
+            <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+          </div>
+        </a>
+      </div></div>
+    </div>
+
+    <div class="day-block" data-day="11">
+      <div class="day-header">
+        <h4>Day 11 — Driver Focus + Speed</h4>
+        <div style="display:flex;gap:8px;align-items:center">
+          <span class="duration">40 min | Range</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="day-body"><div class="day-body-inner">
+        <p><strong>Goal:</strong> Start adding speed back to the driver while maintaining the path fix. The real test of any swing change is whether it holds under full speed.</p>
+
+        <div class="drill-step">
+          <div class="drill-num">1</div>
+          <div class="drill-text"><strong>Warm up (10 min):</strong> 7-iron stock draws (10 balls). Should be mostly automatic by now.</div>
+        </div>
+
+        <div class="drill-step">
+          <div class="drill-num">2</div>
+          <div class="drill-text"><strong>Driver speed ladder (15 min):</strong> Hit 5 balls at 60% speed, 5 at 75%, 5 at 85%, 5 at 95%. Same wide takeaway, same rotation. Monitor: at what speed does the old pattern reappear? That's your current ceiling. Practice at the speed just below that ceiling for the next 10 balls.</div>
+        </div>
+
+        <div class="drill-step">
+          <div class="drill-num">3</div>
+          <div class="drill-text"><strong>Driver commit drill (15 min):</strong> Pick a fairway-width target. Hit 10 drivers with full pre-shot routine, full commitment, at 85-90% speed. Play the draw — aim right edge of your target, expect 3-5 yards of draw. Tally fairways hit vs. missed, and which side you missed on.</div>
+        </div>
+
+        <a href="https://www.youtube.com/watch?v=qxym3MwkSG4" target="_blank" class="video-link">
+          <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          <div class="video-info">
+            <div class="video-title">The Real Secret to Hitting Your Driver Straight</div>
+            <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+          </div>
+        </a>
+      </div></div>
+    </div>
+
+    <div class="day-block" data-day="12">
+      <div class="day-header">
+        <h4>Day 12 — Pressure Practice</h4>
+        <div style="display:flex;gap:8px;align-items:center">
+          <span class="duration">30 min | Range</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="day-body"><div class="day-body-inner">
+        <p><strong>Goal:</strong> Simulate course pressure. Changes that work on the range but collapse under pressure aren't real changes yet.</p>
+
+        <div class="drill-step">
+          <div class="drill-num">1</div>
+          <div class="drill-text"><strong>Play 9 holes on the range (30 min):</strong> Pick a course you know (or invent one). For each "hole," choose a club, pick a target, go through your full routine, and hit ONE ball. Score it honestly: fairway or miss, green or miss. Don't re-hit. Alternate between driver, long iron, mid iron, wedge to simulate a real round. Write your score out of 9.</div>
+        </div>
+
+        <div class="callout">
+          <div class="callout-title">Mental Key</div>
+          <p style="margin-bottom:0">The two-way miss feeds on indecision. When you stand over a ball worried about both the hook AND the push, you freeze. Pick your stock draw, aim for it, and commit. A committed swing to the wrong target is better than a tentative swing to the right one. You cannot steer the ball — you can only trust your preparation.</p>
+        </div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- WEEK 4 -->
+  <div class="week-content" id="week-4">
+    <div class="card">
+      <span class="card-label week-label">Week 4 — Course Transfer & Ownership</span>
+      <p>The mechanical work is done. This week is about transferring range gains to the course, building a pre-shot routine that locks in the feels, and playing with your new stock shot under real conditions.</p>
+    </div>
+
+    <div class="day-block" data-day="13">
+      <div class="day-header">
+        <h4>Day 13 — Pre-Shot Routine Build</h4>
+        <div style="display:flex;gap:8px;align-items:center">
+          <span class="duration">30 min | Range</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="day-body"><div class="day-body-inner">
+        <p><strong>Goal:</strong> Build and lock in a repeatable pre-shot routine that embeds your swing keys.</p>
+
+        <div class="drill-step">
+          <div class="drill-num">1</div>
+          <div class="drill-text"><strong>Design your routine (10 min):</strong> Stand behind the ball. Pick your target line. Take one practice swing with your ONE swing thought (pick the one that helps most: "wide takeaway" or "rotate through" — not both). Address the ball. One look at the target. Go. The whole routine should take 15-20 seconds. Practice it 10 times without hitting a ball.</div>
+        </div>
+
+        <div class="drill-step">
+          <div class="drill-num">2</div>
+          <div class="drill-text"><strong>Routine + ball (20 min):</strong> Hit 30 balls. Every single one gets the full routine. No rapid-fire range balls — that builds bad habits. If you catch yourself skipping the routine, stop, step back, and restart.</div>
+        </div>
+
+        <div class="callout green">
+          <div class="callout-title">One Swing Thought Maximum</div>
+          <p style="margin-bottom:0">On the course, you get ONE swing thought. Not two. Not three. Pick the one that's working best: "wide and rotate" or "swing through to the target" or whatever cue gives you the most consistent result. Everything else is range-only drill work.</p>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="day-block" data-day="14">
+      <div class="day-header">
+        <h4>Day 14 — Scoring Clubs Focus</h4>
+        <div style="display:flex;gap:8px;align-items:center">
+          <span class="duration">45 min | Range</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="day-body"><div class="day-body-inner">
+        <p><strong>Goal:</strong> Dial in the clubs that matter most for scoring: wedges through 7-iron. These are your green-hitting clubs. To shoot in the 70s, you need to hit 11-12 greens per round.</p>
+
+        <div class="drill-step">
+          <div class="drill-num">1</div>
+          <div class="drill-text"><strong>Distance control ladder (20 min):</strong> With your PW, hit 5 balls each at: full, 3/4, 1/2 distance. Then 8-iron: full and 3/4. Then 6-iron: full. Observe your dispersion. The goal isn't just direction (draw vs. push) — it's also distance consistency. Note your landing zone spread for each club/distance.</div>
+        </div>
+
+        <div class="drill-step">
+          <div class="drill-num">2</div>
+          <div class="drill-text"><strong>Pin-hunter drill (15 min):</strong> Pick a flag or target between 100-160 yards. Hit 10 balls at it, alternating clubs. Full PW, then 3/4 9-iron, then full 8-iron, then 3/4 7-iron. Same target, different clubs. This trains commitment to a number and builds scoring-range confidence.</div>
+        </div>
+
+        <div class="drill-step">
+          <div class="drill-num">3</div>
+          <div class="drill-text"><strong>5-ball challenge (10 min):</strong> Pick a green-sized target (30 yards wide). Hit 5 balls with your most troublesome iron. How many land on the "green"? This is your greens-in-regulation percentage with that club. Repeat with your second most troublesome iron.</div>
+        </div>
+
+        <a href="https://www.youtube.com/watch?v=RgC-cMO-49w" target="_blank" class="video-link">
+          <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          <div class="video-info">
+            <div class="video-title">How to Pure Your Irons Consistently (Hit Straight)</div>
+            <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+          </div>
+        </a>
+      </div></div>
+    </div>
+
+    <div class="day-block" data-day="15">
+      <div class="day-header">
+        <h4>Day 15 — Full Simulation Round</h4>
+        <div style="display:flex;gap:8px;align-items:center">
+          <span class="duration">45 min | Range</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="day-body"><div class="day-body-inner">
+        <p><strong>Goal:</strong> Play a full simulated 18 holes on the range. This is your final range test before taking it to the course.</p>
+
+        <div class="drill-step">
+          <div class="drill-num">1</div>
+          <div class="drill-text"><strong>18-hole simulation (40 min):</strong> Pick a course layout from memory. For each hole: choose club off the tee, hit it. Based on result, choose approach club, hit it. Score each hole generously (fairway = good drive, on "green" = good approach). Full pre-shot routine on every single shot. Write your score.</div>
+        </div>
+
+        <div class="drill-step">
+          <div class="drill-num">2</div>
+          <div class="drill-text"><strong>Review (5 min):</strong> Count your misses. How many push-rights? How many pull-hooks? How many good shots? Compare to Day 1. This is your 30-day progress report on the range.</div>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="day-block" data-day="16">
+      <div class="day-header">
+        <h4>Day 16 — Take It to the Course</h4>
+        <div style="display:flex;gap:8px;align-items:center">
+          <span class="duration">Round Day</span>
+          <span class="chevron">▼</span>
+        </div>
+      </div>
+      <div class="day-body"><div class="day-body-inner">
+        <p><strong>Goal:</strong> Play a round with ONE swing thought and your pre-shot routine. This is validation day.</p>
+
+        <div class="drill-step">
+          <div class="drill-num">1</div>
+          <div class="drill-text"><strong>Pre-round warm-up (15 min):</strong> Feet-together drill (10 balls). Stock draws (10 balls). 5 drivers. No more — save the good feels for the course.</div>
+        </div>
+
+        <div class="drill-step">
+          <div class="drill-num">2</div>
+          <div class="drill-text"><strong>On-course rules:</strong>
+            <ul style="margin:8px 0 0 16px">
+              <li>ONE swing thought only — the one from Day 13</li>
+              <li>Full pre-shot routine on every full swing</li>
+              <li>Play your stock draw on every shot — no steering, no manipulation</li>
+              <li>Accept results. Bad shots will happen. Don't change your approach mid-round.</li>
+              <li>Track: fairways hit, greens in regulation, and which side you missed on</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="drill-step">
+          <div class="drill-num">3</div>
+          <div class="drill-text"><strong>Post-round review:</strong> Write down FIR, GIR, total score, and miss pattern. This is your course baseline with the new swing.</div>
+        </div>
+
+        <div class="callout">
+          <div class="callout-title">Expectation Setting</div>
+          <p style="margin-bottom:0">Your first round with new mechanics will likely NOT be your best score. Scores often dip before they improve because you're fighting old habits under pressure. Trust that the range work is real. The scoring improvement comes after the mechanics become subconscious — usually rounds 3-5 with the new pattern.</p>
+        </div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== DRILL LIBRARY ==================== -->
+<section id="drills">
+  <h2>Drill Library</h2>
+  <p class="muted">Quick reference for every drill in the plan. Bookmark this section for range sessions.</p>
+
+  <div class="card drill">
+    <span class="card-label drill-label">Path Fix</span>
+    <h3 style="margin-top:0">Alignment Stick Gate Drill</h3>
+    <p><strong>What it fixes:</strong> Excessively in-to-out path (the root cause).</p>
+    <p><strong>Setup:</strong> Push two alignment sticks into the ground (or lean them against range baskets) about 8 inches apart, creating a gate just outside and in front of the ball, angled along your target line.</p>
+    <p><strong>Execution:</strong> Swing through the gate. If you hit the outside stick, your path is too far inside. If you hit the inside stick, you've come over the top. Start with half-swings.</p>
+    <p><strong>Reps:</strong> 10-15 minutes, 3x per week minimum during Weeks 1-2.</p>
+  </div>
+
+  <div class="card drill">
+    <span class="card-label drill-label">Path Fix</span>
+    <h3 style="margin-top:0">Intentional Fade Practice</h3>
+    <p><strong>What it fixes:</strong> Proves you can swing on a neutral or outside-in path. If you can't hit a fade, your path is still too far inside.</p>
+    <p><strong>Setup:</strong> Open your stance 10-15 yards left of target. Ball position slightly forward of center.</p>
+    <p><strong>Execution:</strong> Swing along your foot line (not at the target). Feel the club exit left after impact. The ball should start slightly left and curve gently right.</p>
+    <p><strong>Key insight:</strong> If your "fades" still draw or go straight, you're making progress — your path is moving toward neutral. If they still hook, you need more time with the gate drill.</p>
+  </div>
+
+  <div class="card drill">
+    <span class="card-label drill-label">Rotation</span>
+    <h3 style="margin-top:0">Feet-Together Drill</h3>
+    <p><strong>What it fixes:</strong> Sway, slide, early extension, getting stuck. Forces pure rotation.</p>
+    <p><strong>Setup:</strong> Stand with feet touching, 7-iron.</p>
+    <p><strong>Execution:</strong> Make 3/4 swings. You'll feel your body must rotate to generate any power — you can't sway or slide. This automatically produces a more neutral path.</p>
+    <p><strong>Reps:</strong> 10-15 balls. Use as a warm-up drill for every session.</p>
+  </div>
+
+  <div class="card drill">
+    <span class="card-label drill-label">Rotation</span>
+    <h3 style="margin-top:0">Wall/Chair Early Extension Drill</h3>
+    <p><strong>What it fixes:</strong> Hips thrusting toward the ball instead of rotating.</p>
+    <p><strong>Setup:</strong> Address position with your backside lightly touching a wall, chair back, or golf cart.</p>
+    <p><strong>Execution:</strong> Make slow-motion swings, maintaining glute contact through the "impact" zone. If your hips thrust forward, you'll feel yourself disconnect from the wall. That disconnect is early extension.</p>
+    <p><strong>Reps:</strong> 20 slow-motion reps. Can be done at home without a club.</p>
+  </div>
+
+  <div class="card drill">
+    <span class="card-label drill-label">Takeaway</span>
+    <h3 style="margin-top:0">Takeaway Checkpoint Drill</h3>
+    <p><strong>What it fixes:</strong> Inside takeaway that sets up the stuck position.</p>
+    <p><strong>Setup:</strong> 7-iron, normal address.</p>
+    <p><strong>Execution:</strong> Take the club back slowly and stop when the shaft is parallel to the ground. Check two things: (1) the clubhead is outside your hands (not behind them), and (2) the toe of the club points roughly at the sky. If the clubhead is behind your hands with the face pointing at the ground, your takeaway is too inside and too shut.</p>
+    <p><strong>Reps:</strong> 20-30 slow reps. Use as a range warm-up.</p>
+  </div>
+
+  <div class="card drill">
+    <span class="card-label drill-label">Awareness</span>
+    <h3 style="margin-top:0">9-Ball Grid Drill</h3>
+    <p><strong>What it fixes:</strong> Builds conscious control of face-to-path relationship.</p>
+    <p><strong>Setup:</strong> Place 9 balls in a 3×3 grid. Assign shot shapes: Row 1 = fade, Row 2 = straight, Row 3 = draw.</p>
+    <p><strong>Execution:</strong> Work through all 9, pausing between each ball to reset your setup for the intended shape. Use 7-iron. The goal is intentionality — knowing what you're doing with path and face, not just hoping.</p>
+    <p><strong>Reps:</strong> Once through the grid = one set. Do 2-3 sets per session when used.</p>
+  </div>
+
+  <div class="card drill">
+    <span class="card-label drill-label">Connection</span>
+    <h3 style="margin-top:0">Glove-Under-Arm Drill</h3>
+    <p><strong>What it fixes:</strong> Arms disconnecting from body, getting stuck behind you.</p>
+    <p><strong>Setup:</strong> Place a glove or small towel under your trail (right) armpit.</p>
+    <p><strong>Execution:</strong> Make 3/4 swings keeping the glove in place through impact. If your trail arm separates from your body too early, the glove drops. This keeps the arms connected and prevents the stuck position.</p>
+    <p><strong>Reps:</strong> 15-20 balls with 7-iron. Good warm-up drill.</p>
+  </div>
+</section>
+
+<!-- ==================== VIDEO GUIDE ==================== -->
+<section id="videos">
+  <h2>Video Guide</h2>
+  <p class="muted">Curated videos from your coaches, organized by topic. Watch in this order for maximum impact.</p>
+
+  <h3>Priority 1 — Understanding the Problem</h3>
+  <p>Watch these first. They explain exactly why your pattern happens.</p>
+
+  <a href="https://www.youtube.com/watch?v=xZX0ApMN1r4" target="_blank" class="video-link">
+    <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    <div class="video-info">
+      <div class="video-title">Control the Club Face at Impact — Straighter Ball Flight</div>
+      <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+    </div>
+  </a>
+
+  <a href="https://www.youtube.com/watch?v=yBr_9QxZseU" target="_blank" class="video-link">
+    <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    <div class="video-info">
+      <div class="video-title">How to Get Unstuck in the Golf Swing</div>
+      <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+    </div>
+  </a>
+
+  <a href="https://www.youtube.com/watch?v=qdpvS2kNZao" target="_blank" class="video-link">
+    <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    <div class="video-info">
+      <div class="video-title">How to Get Unstuck in Your Golf Swing (Part 2)</div>
+      <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+    </div>
+  </a>
+
+  <h3>Priority 2 — Fixing the Path</h3>
+  <p>Drills and feels to move your path from too-far-inside to neutral.</p>
+
+  <a href="https://www.youtube.com/watch?v=mNcP7mEmrJE" target="_blank" class="video-link">
+    <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    <div class="video-info">
+      <div class="video-title">STOP Pushing the Ball Right (Hockey Stick + New Drills)</div>
+      <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+    </div>
+  </a>
+
+  <a href="https://www.youtube.com/watch?v=nyb11lvrSP0" target="_blank" class="video-link">
+    <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    <div class="video-info">
+      <div class="video-title">The Coach of World #1s Added Width to My Swing</div>
+      <div class="video-coach">Chris Mayson — Golf Digest Top 50 Teacher</div>
+    </div>
+  </a>
+
+  <a href="https://www.youtube.com/watch?v=bjCCUp4vuQk" target="_blank" class="video-link">
+    <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    <div class="video-info">
+      <div class="video-title">How to Curve the Ball (Train Your Game Ep. 12)</div>
+      <div class="video-coach">Chris Mayson</div>
+    </div>
+  </a>
+
+  <a href="https://www.youtube.com/watch?v=3ydc4EgJvqU" target="_blank" class="video-link">
+    <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    <div class="video-info">
+      <div class="video-title">How to Get and Stay Unstuck in the Golf Swing</div>
+      <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+    </div>
+  </a>
+
+  <h3>Priority 3 — Fixing the Hook Side</h3>
+
+  <a href="https://www.youtube.com/watch?v=uy7C7-6nhgM" target="_blank" class="video-link">
+    <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    <div class="video-info">
+      <div class="video-title">Stop Fighting with Your Hook and Pulled Golf Shots</div>
+      <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+    </div>
+  </a>
+
+  <a href="https://www.youtube.com/watch?v=O_eu-2GDbDA" target="_blank" class="video-link">
+    <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    <div class="video-info">
+      <div class="video-title">Quick Fix: Pull, Hook & Pull Hook</div>
+      <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+    </div>
+  </a>
+
+  <h3>Priority 4 — Ball Striking & Irons</h3>
+
+  <a href="https://www.youtube.com/watch?v=OzRDyfIrPEk" target="_blank" class="video-link">
+    <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    <div class="video-info">
+      <div class="video-title">The Best Golf Drills to Instantly Improve Ball Striking</div>
+      <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+    </div>
+  </a>
+
+  <a href="https://www.youtube.com/watch?v=JsT2ASvaSHY" target="_blank" class="video-link">
+    <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    <div class="video-info">
+      <div class="video-title">3 Tips to Help You Hit Your Irons Consistently</div>
+      <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+    </div>
+  </a>
+
+  <a href="https://www.youtube.com/watch?v=RgC-cMO-49w" target="_blank" class="video-link">
+    <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    <div class="video-info">
+      <div class="video-title">How to Pure Your Irons Consistently</div>
+      <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+    </div>
+  </a>
+
+  <a href="https://www.youtube.com/watch?v=wyU_SC7reXw" target="_blank" class="video-link">
+    <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    <div class="video-info">
+      <div class="video-title">Can a Top 50 Golf Instructor Fix My Swing?</div>
+      <div class="video-coach">Chris Mayson Lesson</div>
+    </div>
+  </a>
+
+  <h3>Priority 5 — Driver</h3>
+
+  <a href="https://www.youtube.com/watch?v=zDiwPiWM7qM" target="_blank" class="video-link">
+    <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    <div class="video-info">
+      <div class="video-title">How to Hit a Driver Straight</div>
+      <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+    </div>
+  </a>
+
+  <a href="https://www.youtube.com/watch?v=qxym3MwkSG4" target="_blank" class="video-link">
+    <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    <div class="video-info">
+      <div class="video-title">The Real Secret to Hitting Your Driver Straight</div>
+      <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+    </div>
+  </a>
+
+  <a href="https://www.youtube.com/watch?v=YveiDPsw0RA" target="_blank" class="video-link">
+    <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    <div class="video-info">
+      <div class="video-title">This Top Coach Might Have SOLVED Golf's #1 Problem</div>
+      <div class="video-coach">Featuring Chris Mayson</div>
+    </div>
+  </a>
+
+  <h3>Priority 6 — Release & Wrist Control</h3>
+
+  <a href="https://www.youtube.com/watch?v=SW5nwU-BXSI" target="_blank" class="video-link">
+    <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    <div class="video-info">
+      <div class="video-title">Wrist Release: The Secret to Impact</div>
+      <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+    </div>
+  </a>
+
+  <a href="https://www.youtube.com/watch?v=WcOdGVVttBQ" target="_blank" class="video-link">
+    <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    <div class="video-info">
+      <div class="video-title">How to Release the Golf Club Powerfully</div>
+      <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+    </div>
+  </a>
+
+  <a href="https://www.youtube.com/shorts/k35SBaaNeZs" target="_blank" class="video-link">
+    <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    <div class="video-info">
+      <div class="video-title">Takeaway and Backswing Training</div>
+      <div class="video-coach">Michael Alexander — Alexander Golf</div>
+    </div>
+  </a>
+</section>
+
+<!-- ==================== CAMERA SETUP ==================== -->
+<section id="camera">
+  <h2>Film Your Swing</h2>
+  <p>Getting swing video is the single most valuable thing you can do without a launch monitor. Here's exactly how to set it up.</p>
+
+  <div class="camera-diagram">
+    <div class="camera-angle">
+      <div class="angle-icon">📱➡️</div>
+      <h4>Down-the-Line (DTL)</h4>
+      <ul>
+        <li>Stand directly behind the ball, on the target line extended</li>
+        <li>Camera at <strong>hand height</strong> (not ground level, not head height)</li>
+        <li>Distance: far enough to see the full swing arc with the club visible at the top of the backswing</li>
+        <li>Aim camera at your hands at address</li>
+        <li>Use slow-motion (240fps on iPhone) if available</li>
+      </ul>
+      <p style="font-size:0.85rem;margin-top:8px"><strong>What it shows:</strong> Swing plane, path (inside/outside), takeaway direction, whether you're stuck, early extension</p>
+    </div>
+    <div class="camera-angle">
+      <div class="angle-icon">📱⬆️</div>
+      <h4>Face-On (FO)</h4>
+      <ul>
+        <li>Stand directly in front of the golfer, perpendicular to the target line</li>
+        <li>Camera at <strong>belt/hip height</strong></li>
+        <li>Center the frame on the ball position</li>
+        <li>Distance: full body in frame with room above for the club at the top</li>
+        <li>Use slow-motion if available</li>
+      </ul>
+      <p style="font-size:0.85rem;margin-top:8px"><strong>What it shows:</strong> Weight shift, hip sway vs. rotation, hand position at impact, follow-through, balance</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-title">Filming Tips</div>
+    <p style="margin-bottom:0">
+      <strong>Use a tripod or phone mount</strong> — hand-held video is nearly useless for swing analysis.<br><br>
+      <strong>Film 5 swings from each angle</strong> with the same club (7-iron is ideal).<br><br>
+      <strong>Use slow-motion mode</strong> — 240fps on iPhone (Settings → Camera → Record Slo-mo). This lets you scrub through impact frame-by-frame.<br><br>
+      <strong>Film in good light</strong> — avoid backlighting (don't face the sun).<br><br>
+      <strong>Include the ball flight</strong> — let the camera run until the ball lands. Ball flight tells the story.<br><br>
+      <strong>Don't "perform"</strong> — hit normal shots. The point is to capture your real swing, not your best swing.
+    </p>
+  </div>
+
+  <h3>What to Look For</h3>
+  <div class="card">
+    <p>When you review your video, check these specific things:</p>
+    <ul style="margin: 8px 0 0 16px;">
+      <li><strong>DTL — Takeaway:</strong> Does the clubhead drag inside immediately? It should track along or slightly inside the target line for the first foot.</li>
+      <li><strong>DTL — Top of backswing:</strong> Where is the club shaft pointing? If it points right of target (across the line), you're set up to get stuck.</li>
+      <li><strong>DTL — Downswing:</strong> Does the club drop behind your body? It should slot onto or just under the backswing plane.</li>
+      <li><strong>FO — Impact:</strong> Have your hips rotated open, or are they still square/thrusting toward the ball?</li>
+      <li><strong>FO — Follow-through:</strong> Is your chest facing the target at finish? Or are you hanging back with a stalled turn?</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ==================== COURSE STRATEGY ==================== -->
+<section id="strategy">
+  <h2>Course Strategy for the 70s</h2>
+  <p class="muted">Beyond ball striking — the scoring framework to break 80 consistently.</p>
+
+  <div class="card key-point">
+    <span class="card-label key">The Math</span>
+    <h3 style="margin-top:0">Shooting 79 or Better — What It Takes</h3>
+    <p>To shoot in the 70s, you need roughly:</p>
+    <ul style="margin: 8px 0 0 16px;">
+      <li><strong>8-10 fairways</strong> (57-71%) — eliminating the two-way miss gets you here</li>
+      <li><strong>10-12 greens in regulation</strong> — ball striking consistency from 150 yards in</li>
+      <li><strong>30-32 putts</strong> — no three-putts, make a few 6-10 footers</li>
+      <li><strong>No more than 1 double bogey</strong> — course management, not heroics</li>
+      <li><strong>2-4 birdies</strong> — capitalize on short approach shots</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">Tee Shot Strategy — Eliminate One Side</h3>
+    <p>Once you have a stock 3-5 yard draw, your strategy changes fundamentally:</p>
+    <ul style="margin: 8px 0 0 16px;">
+      <li><strong>Aim at the right edge of the fairway.</strong> Your draw brings it back to center. If it goes straight (no draw), you're still in the right side of the fairway. The left side of the course is eliminated.</li>
+      <li><strong>On tight holes, take 3-wood or hybrid off the tee.</strong> A straight 220 in the fairway beats a 270 draw-or-hook into trouble. From the high 80s to the 70s, the biggest scoring gains come from avoiding big numbers, not adding distance.</li>
+      <li><strong>Know your miss.</strong> As your path neutralizes, your miss should become predominantly a slight push (face stays open to path). That's a manageable, one-directional miss. Play for it.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">Approach Shot Strategy — Aim for the Fat of the Green</h3>
+    <ul style="margin: 8px 0 0 16px;">
+      <li><strong>Stop firing at pins.</strong> From 150+ yards, aim at the center of the green. GIR percentage matters more than proximity. A 30-foot putt from the green is better than a chip from a bunker.</li>
+      <li><strong>Know your distances.</strong> Spend 10 minutes on the range hitting each iron 10 times and noting your average carry. Most amateurs overestimate their distances by 5-10 yards, which means consistently coming up short.</li>
+      <li><strong>When in doubt, take one more club.</strong> The front bunker or hazard catches more balls than the back of the green. Being 15 feet past the pin is better than being in a bunker 10 yards short.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">The "Bogey is OK" Mindset</h3>
+    <p>From the high 80s to the 70s, the biggest shift is mental:</p>
+    <ul style="margin: 8px 0 0 16px;">
+      <li><strong>Bogey is not a failure.</strong> You can shoot 79 with 7 bogeys and 4 birdies. Stop compounding bad holes by trying hero recovery shots.</li>
+      <li><strong>After a bad tee shot:</strong> Punch out to the fairway. Wedge on. Two-putt. Walk away with bogey. That's a 5 on a par 4 — not a 7 after trying to thread a gap in the trees.</li>
+      <li><strong>Par 5s are your scoring holes.</strong> Two good shots and a wedge to the green. These are where your birdies come from — not from aggressive driver plays on tight par 4s.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">Recommended Training Aids</h3>
+    <ul style="margin: 8px 0 0 16px;">
+      <li><strong>Alignment sticks (essential):</strong> $10-15. You need two minimum. Used for gate drill, alignment check, and path feedback. Non-negotiable.</li>
+      <li><strong>Phone tripod/mount (essential):</strong> $15-20. For filming your swing. A suction-cup mount on a range ball basket works too.</li>
+      <li><strong>Tour Striker Smart Ball ($30):</strong> Inflatable ball held between forearms. Prevents arms from separating and getting stuck. Good for home practice.</li>
+      <li><strong>Basic launch monitor (optional but valuable):</strong> Garmin R10 (~$400) or Rapsodo MLM2PRO (~$500) would give you actual path and face numbers. Not required, but accelerates the feedback loop significantly.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Footer -->
+<section style="text-align:center;padding:40px 0 60px">
+  <p class="muted" style="font-size:0.85rem">Built with research from Adam Bazalgette (Scratch Golf Academy), Chris Mayson (Golf Digest Top 50), and Michael Alexander (Alexander Golf).</p>
+  <p class="muted" style="font-size:0.8rem;margin-top:4px">Plan designed for a right-handed golfer working from the high 80s to consistent 70s.</p>
+</section>
+
+</div>
+
+<script>
+// Week tabs
+document.querySelectorAll('.week-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.week-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.week-content').forEach(c => c.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('week-' + tab.dataset.week).classList.add('active');
+  });
+});
+
+// Day accordions
+document.querySelectorAll('.day-block').forEach(block => {
+  block.querySelector('.day-header').addEventListener('click', () => {
+    block.classList.toggle('open');
+  });
+});
+
+// Checklist checkboxes
+document.querySelectorAll('.checklist li').forEach(li => {
+  li.addEventListener('click', () => {
+    li.classList.toggle('checked');
+    updateProgress();
+  });
+});
+
+// Progress tracking via localStorage
+const STORAGE_KEY = 'golf-plan-progress';
+
+function loadProgress() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    if (saved.completedDays) {
+      updateProgressBar(saved.completedDays.length, 16);
+    }
+  } catch(e) {}
+}
+
+function updateProgress() {
+  const checked = document.querySelectorAll('.checklist li.checked').length;
+  const total = document.querySelectorAll('.checklist li').length;
+  if (total > 0) {
+    updateProgressBar(checked, total);
+  }
+}
+
+function updateProgressBar(done, total) {
+  const pct = Math.round((done / total) * 100);
+  document.getElementById('progress-pct').textContent = pct + '%';
+  document.getElementById('progress-fill').style.width = pct + '%';
+}
+
+// Smooth scroll for nav
+document.querySelectorAll('.nav a').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) {
+      const navHeight = document.querySelector('.nav').offsetHeight;
+      window.scrollTo({
+        top: target.offsetTop - navHeight - 10,
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+
+// Highlight active nav on scroll
+window.addEventListener('scroll', () => {
+  const navHeight = document.querySelector('.nav').offsetHeight;
+  const sections = document.querySelectorAll('section[id]');
+  let current = '';
+  sections.forEach(section => {
+    if (window.scrollY >= section.offsetTop - navHeight - 60) {
+      current = section.id;
+    }
+  });
+  document.querySelectorAll('.nav a').forEach(link => {
+    link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+  });
+});
+
+loadProgress();
+</script>
+
+</body>
+</html>
