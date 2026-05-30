@@ -3,66 +3,453 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>30-Day Ball Striking Plan — Fix the Two-Way Miss</title>
+<title>30-Day Ball Striking Plan - Fix the Two-Way Miss</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400..900;1,14..32,400..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 <style>
 :root {
-  --green-dark: #1a472a;
-  --green-mid: #2d6a4f;
-  --green-light: #40916c;
-  --green-pale: #b7e4c7;
-  --cream: #f8f6f0;
-  --sand: #e8e0d0;
-  --text: #1a1a1a;
-  --text-light: #555;
-  --accent: #d4a843;
-  --red: #c0392b;
-  --blue: #2980b9;
+  --green-deep: oklch(27% 0.07 150);
+  --green: oklch(42% 0.09 154);
+  --green-soft: oklch(59% 0.12 154);
+  --green-wash: oklch(93% 0.045 148);
+  --ground: oklch(96% 0.015 118);
+  --surface: oklch(99% 0.004 118);
+  --surface-green: oklch(96% 0.025 148);
+  --line: oklch(87% 0.018 112);
+  --line-strong: oklch(76% 0.035 124);
+  --ink: oklch(18% 0.018 145);
+  --muted: oklch(42% 0.025 145);
+  --amber: oklch(71% 0.14 83);
+  --amber-wash: oklch(94% 0.055 85);
+  --danger: oklch(48% 0.16 31);
+  --danger-wash: oklch(94% 0.045 32);
+  --blue: oklch(51% 0.12 244);
+  --blue-wash: oklch(94% 0.04 240);
   --white: #fff;
-  --shadow: 0 2px 8px rgba(0,0,0,0.1);
-  --shadow-lg: 0 4px 20px rgba(0,0,0,0.12);
-  --radius: 12px;
+  --focus: oklch(68% 0.16 83);
+  --shadow: 0 1px 2px oklch(18% 0.018 145 / 0.08), 0 8px 24px oklch(18% 0.018 145 / 0.07);
+  --shadow-tight: 0 1px 2px oklch(18% 0.018 145 / 0.08), 0 4px 14px oklch(18% 0.018 145 / 0.06);
+  --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
+  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --cream: #f7f6f1;
+  --hero-column: 540px;
+  --flank-contour: url("data:image/svg+xml,%3Csvg width='520' height='520' viewBox='0 0 520 520' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23f7f6f1' stroke-opacity='.14' stroke-width='1.6' stroke-linecap='round'%3E%3Cpath d='M-40 72 C 58 38 118 142 228 92 S 392 28 560 88'/%3E%3Cpath d='M-52 168 C 64 198 142 118 248 152 S 402 228 548 176 S 680 112 780 168'/%3E%3Cpath d='M-48 268 C 72 232 158 318 278 262 S 428 188 558 248 S 712 322 820 258'/%3E%3Cpath d='M-44 372 C 88 418 176 302 302 362 S 468 452 612 388 S 748 308 860 372'/%3E%3Cpath d='M36 458 C 132 408 218 488 338 438 S 502 372 628 428 S 768 498 860 448'/%3E%3C/g%3E%3C/svg%3E");
+  --radius: 8px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
+html { scroll-behavior: smooth; }
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  background: var(--cream);
-  color: var(--text);
+  font-family: var(--font-body);
+  background:
+    radial-gradient(circle at 50% 0, oklch(20% 0.055 150), oklch(7% 0.02 150) 62%);
+  color: var(--ink);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
 }
 
-.container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='900' height='900' viewBox='0 0 900 900' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%230f4a2a' stroke-opacity='.08' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M-80 180 C 70 118 170 242 318 174 S 546 82 706 170 S 864 268 990 184'/%3E%3Cpath d='M-90 392 C 92 450 202 324 374 394 S 618 522 786 424 S 904 328 1002 398'/%3E%3Cpath d='M-82 640 C 112 566 240 720 420 648 S 692 554 860 648 S 978 734 1048 660'/%3E%3Cpath d='M116 18 C 188 112 296 32 392 98 S 532 204 642 132 S 762 40 884 96'/%3E%3C/g%3E%3C/svg%3E");
+  background-position: center 160px;
+  background-size: min(980px, 155vw) auto;
+  opacity: 0.95;
+}
+
+.container {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 5vw, 24px);
+  position: relative;
+  background:
+    linear-gradient(180deg, oklch(96% 0.012 112), var(--ground) 28%, oklch(95% 0.012 118));
+}
+
+.hero,
+.nav,
+.container {
+  width: min(100%, var(--hero-column));
+}
+
+.hero-shell {
+  position: relative;
+  width: 100%;
+}
+
+.hero-flank {
+  display: none;
+}
+
+@keyframes ken-burns {
+  0%   { transform: scale(1.06) translate(0%, 0%); }
+  100% { transform: scale(1.15) translate(-2%, 1.5%); }
+}
 
 /* Hero */
 .hero {
-  background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 50%, var(--green-light) 100%);
+  background: oklch(12% 0.03 150);
   color: var(--white);
-  padding: 60px 20px 50px;
+  aspect-ratio: 852 / 765;
+  min-height: 0;
+  padding: 0;
   text-align: center;
   position: relative;
   overflow: hidden;
+  isolation: isolate;
+  margin: 0 auto;
+  display: block;
 }
-.hero::after {
+.hero::before {
   content: '';
   position: absolute;
-  bottom: -2px;
-  left: 0; right: 0;
-  height: 40px;
-  background: var(--cream);
-  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  inset: 0;
+  background: url("design/wallpaper-hero-crop.png") center top / cover no-repeat;
+  animation: ken-burns 18s ease-in-out infinite alternate;
+  z-index: -1;
+  will-change: transform;
 }
-.hero h1 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.5px; }
-.hero .subtitle { font-size: 1.1rem; opacity: 0.9; font-weight: 300; }
+.hero-wave {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+.hero-wave path {
+  fill: var(--cream);
+}
+.course-art {
+  display: none;
+}
+.course-art svg {
+  position: absolute;
+  inset: -4% -10%;
+  width: 120%;
+  height: 112%;
+}
+.course-lines path {
+  fill: none;
+  stroke: oklch(91% 0.03 105 / 0.78);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+.course-lines path:nth-child(even) {
+  stroke: oklch(99% 0.014 104 / 0.62);
+  stroke-width: 1.2;
+}
+.course-figure {
+  position: absolute;
+  width: 28px;
+  height: 44px;
+  filter: drop-shadow(12px 14px 2px oklch(8% 0.02 150 / 0.34));
+  opacity: 0.78;
+}
+.course-figure::before,
+.course-figure::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.course-figure::before {
+  top: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: oklch(94% 0.018 100);
+}
+.course-figure::after {
+  top: 12px;
+  width: 8px;
+  height: 25px;
+  border-radius: 5px;
+  background: oklch(89% 0.035 95);
+  box-shadow:
+    -8px 10px 0 -3px oklch(61% 0.08 80),
+    8px 10px 0 -3px oklch(61% 0.08 80);
+}
+.course-figure.one { left: 17%; top: 8%; transform: rotate(-18deg); }
+.course-figure.two { right: 11%; top: 27%; transform: rotate(17deg); }
+.course-figure.three { right: 23%; bottom: 12%; transform: rotate(-18deg); }
+.course-figure.three::after {
+  background: oklch(57% 0.11 240);
+  box-shadow:
+    -8px 10px 0 -3px oklch(72% 0.06 88),
+    8px 10px 0 -3px oklch(72% 0.06 88);
+}
+.course-flag {
+  position: absolute;
+  left: 11%;
+  top: 30%;
+  width: 1px;
+  height: 46px;
+  background: oklch(94% 0.018 100 / 0.76);
+  box-shadow: 12px 30px 4px oklch(8% 0.02 150 / 0.25);
+}
+.course-flag::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 3px;
+  width: 28px;
+  height: 18px;
+  clip-path: polygon(0 0, 100% 22%, 0 100%);
+  background: oklch(65% 0.18 42);
+}
+.course-cart {
+  position: absolute;
+  left: 50%;
+  top: 15%;
+  width: 92px;
+  height: 54px;
+  transform: translateX(-50%) rotate(1deg);
+  filter: drop-shadow(-20px 18px 2px oklch(8% 0.02 150 / 0.25));
+}
+.course-cart::before {
+  content: '';
+  position: absolute;
+  inset: 18px 8px 6px;
+  border-radius: 18px 18px 14px 14px;
+  background: linear-gradient(180deg, oklch(93% 0.018 104), oklch(73% 0.035 220));
+  border: 1px solid oklch(100% 0 0 / 0.44);
+}
+.course-cart::after {
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 10px;
+  width: 68px;
+  height: 16px;
+  border-top: 4px solid oklch(93% 0.012 104);
+  border-left: 2px solid oklch(93% 0.012 104);
+  border-right: 2px solid oklch(93% 0.012 104);
+  border-radius: 50% 50% 0 0;
+}
+.hero-inner {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(3.25rem, 15.3vw, 5.6rem);
+  line-height: 0.84;
+  font-weight: 700;
+  margin: 0 auto 18px;
+  max-width: 7.7ch;
+  text-wrap: balance;
+  text-shadow: 0 3px 0 oklch(8% 0.02 150 / 0.18), 0 18px 28px oklch(8% 0.02 150 / 0.26);
+}
+.hero .subtitle {
+  font-size: clamp(0.76rem, 3vw, 1rem);
+  color: oklch(82% 0.13 84);
+  opacity: 0.98;
+  font-weight: 820;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
 .hero .tagline {
-  display: inline-block;
-  background: rgba(255,255,255,0.15);
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  margin-top: 16px;
-  backdrop-filter: blur(4px);
+  color: oklch(94% 0.015 108);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1rem, 4.2vw, 1.28rem);
+  line-height: 1.28;
+  margin-top: 8px;
+  text-shadow: 0 10px 18px oklch(8% 0.02 150 / 0.28);
+}
+.hero-rule {
+  display: block;
+  width: 44px;
+  height: 2px;
+  background: oklch(82% 0.13 84);
+  margin: 10px 0 6px;
+}
+.hero-icon {
+  position: absolute;
+  z-index: 3;
+  top: clamp(32px, 8vw, 46px);
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 999px;
+  color: transparent;
+  text-decoration: none;
+}
+.hero-icon svg {
+  width: 30px;
+  height: 30px;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  fill: none;
+}
+.hero-menu {
+  left: clamp(26px, 7vw, 42px);
+  background: transparent;
+  gap: 6px;
+}
+.hero-menu span,
+.hero-menu::before,
+.hero-menu::after {
+  content: '';
+  width: 30px;
+  height: 3px;
+  border-radius: 999px;
+  background: transparent;
+}
+.hero-flag {
+  right: clamp(26px, 7vw, 42px);
+  background: transparent;
+  box-shadow: none;
+}
+.hero-flag svg path:nth-child(2) {
+  fill: currentColor;
+}
+.next-session {
+  border: 1px solid oklch(86% 0.014 105);
+  border-radius: 22px;
+  background: linear-gradient(135deg, oklch(100% 0 0), oklch(98% 0.009 100));
+  box-shadow: 0 18px 42px oklch(18% 0.018 145 / 0.11);
+  color: var(--ink);
+  text-align: left;
+  padding: clamp(24px, 7vw, 34px);
+  overflow: hidden;
+  position: relative;
+}
+.next-session::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 12% 24%, oklch(100% 0 0 / 0.7), transparent 34%),
+    radial-gradient(ellipse at 82% 82%, oklch(95% 0.02 98 / 0.52), transparent 34%);
+  pointer-events: none;
+}
+.next-session > * { position: relative; }
+.next-session-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+.next-session-top > div { min-width: 0; }
+.next-session-label {
+  display: block;
+  color: var(--green-deep);
+  font-size: 0.75rem;
+  font-weight: 850;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.next-session h2 {
+  margin: 6px 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 13vw, 4.6rem);
+  line-height: 0.9;
+  color: var(--green-deep);
+  white-space: nowrap;
+}
+.next-session-title {
+  margin: 10px 0 0;
+  color: var(--green-deep);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.45rem, 6vw, 2.1rem);
+  line-height: 1.12;
+  white-space: nowrap;
+}
+.next-session a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid oklch(72% 0.018 108);
+  background: oklch(100% 0 0 / 0.72);
+  color: var(--green-deep);
+  text-decoration: none;
+  font-size: 0.94rem;
+  font-weight: 760;
+  white-space: nowrap;
+}
+.next-session a svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+}
+.session-divider {
+  height: 1px;
+  background: var(--line);
+  margin: 24px 0;
+}
+.session-progress-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  color: var(--green-deep);
+  font-size: 0.76rem;
+  font-weight: 850;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+.session-progress-row span:last-child {
+  color: var(--ink);
+  font-weight: 650;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.session-progress-bar {
+  width: 100%;
+  height: 14px;
+  margin: 12px 0 14px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: oklch(89% 0.012 100);
+}
+.session-progress-fill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--green-deep), var(--green));
+  transform: scaleX(var(--progress-scale, 0.25));
+  transform-origin: left center;
+  transition: transform 360ms var(--ease);
+}
+.session-progress-note {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--green-deep);
+  font-size: 1rem;
+  margin: 0;
+}
+.next-session a:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
 }
 
 /* Nav */
@@ -70,92 +457,333 @@ body {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: var(--white);
-  border-bottom: 1px solid var(--sand);
-  padding: 0;
+  background: var(--cream);
+  border-bottom: 0;
+  padding: 14px clamp(26px, 7vw, 34px) 8px;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  box-shadow: var(--shadow);
+  box-shadow: none;
+  scrollbar-width: none;
+  margin: 0 auto;
+}
+.nav::-webkit-scrollbar {
+  display: none;
 }
 .nav-inner {
   display: flex;
-  gap: 0;
-  max-width: 800px;
+  align-items: center;
+  gap: 2px;
+  max-width: none;
   margin: 0 auto;
   min-width: max-content;
+  padding: 6px;
+  border: 1px solid oklch(88% 0.012 105);
+  border-radius: 999px;
+  background: oklch(100% 0 0 / 0.88);
+  box-shadow: 0 12px 26px oklch(18% 0.018 145 / 0.12);
 }
 .nav a {
-  display: block;
-  padding: 14px 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 42px;
+  padding: 0 13px;
   text-decoration: none;
-  color: var(--text-light);
+  color: oklch(31% 0.018 145);
   font-size: 0.85rem;
-  font-weight: 500;
+  font-weight: 700;
   white-space: nowrap;
-  border-bottom: 3px solid transparent;
-  transition: all 0.2s;
+  border-radius: 999px;
+  border-bottom: 0;
+  transition: color 180ms var(--ease), background 180ms var(--ease), box-shadow 180ms var(--ease);
 }
-.nav a:hover, .nav a.active {
-  color: var(--green-dark);
-  border-bottom-color: var(--green-dark);
+.nav a:hover, .nav a.active, .nav a[aria-current="true"] {
+  color: var(--white);
+  background: var(--green-deep);
+  box-shadow: inset 0 0 0 1px oklch(100% 0 0 / 0.12);
+}
+.nav svg {
+  width: 19px;
+  height: 19px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.9;
+}
+.nav a:focus-visible,
+.week-tab:focus-visible,
+.day-open-toggle:focus-visible,
+.video-link:focus-visible,
+.done-toggle:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.home-dashboard {
+  padding: 8px 0 36px;
+}
+.home-dashboard + section {
+  border-top: 0;
+}
+.today-session {
+  margin-top: 32px;
+}
+.today-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+.today-heading svg {
+  width: 28px;
+  height: 28px;
+  color: var(--amber);
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-width: 1.6;
+}
+.today-heading h2 {
+  margin: 0;
+  font-size: clamp(2rem, 9vw, 3rem);
+}
+.today-session > p {
+  margin-bottom: 18px;
+  color: var(--muted);
+}
+.overview-week-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 22px;
+}
+.overview-week-tabs span {
+  display: grid;
+  place-items: center;
+  min-height: 44px;
+  border-radius: 999px;
+  background: oklch(92% 0.006 105);
+  color: oklch(28% 0.016 145);
+  font-size: 0.75rem;
+  font-weight: 850;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.overview-week-tabs .active {
+  color: var(--white);
+  background: var(--green-deep);
+}
+.today-card {
+  overflow: hidden;
+  border: 1px solid oklch(85% 0.014 105);
+  border-radius: 20px;
+  background: var(--surface);
+  box-shadow: 0 16px 36px oklch(18% 0.018 145 / 0.12);
+}
+.today-card-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: 12px;
+  min-height: 72px;
+  padding: 12px 18px;
+  background: linear-gradient(90deg, var(--green-deep), oklch(34% 0.085 152));
+  color: var(--white);
+}
+.today-number {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 2px solid oklch(100% 0 0 / 0.78);
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+}
+.today-card-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 5vw, 1.7rem);
+  line-height: 1.05;
+  color: var(--white);
+}
+.today-card-duration {
+  color: oklch(78% 0.12 84);
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+.today-card-head svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+}
+.today-card-body {
+  padding: 20px 18px 18px;
+}
+.today-focus {
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  gap: 14px;
+  align-items: center;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+.today-focus svg,
+.today-stat svg,
+.done-wide svg {
+  width: 32px;
+  height: 32px;
+  color: var(--green-deep);
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+}
+.today-focus-label,
+.today-stat strong {
+  display: block;
+  color: var(--green-deep);
+  font-size: 0.74rem;
+  font-weight: 850;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.today-focus p,
+.today-stat span {
+  margin: 2px 0 0;
+  color: oklch(27% 0.015 145);
+  line-height: 1.28;
+}
+.today-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin: 18px 0;
+}
+.today-stat {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 10px;
+  padding: 0 12px;
+  border-left: 1px solid var(--line);
+}
+.today-stat:first-child {
+  border-left: 0;
+  padding-left: 0;
+}
+.done-wide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 58px;
+  width: 100%;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--green-deep), oklch(34% 0.085 152));
+  color: var(--white);
+  font: inherit;
+  font-weight: 760;
+  cursor: pointer;
+}
+.done-wide[aria-pressed="true"] {
+  background: var(--green-deep);
+}
+.done-wide svg {
+  color: currentColor;
+  width: 24px;
+  height: 24px;
 }
 
 /* Sections */
-section { padding: 40px 0; }
-section + section { border-top: 1px solid var(--sand); }
+section { padding: clamp(34px, 8vw, 52px) 0; }
+section[id] { scroll-margin-top: 72px; }
+#plan-overview,
+#plan,
+#progress-section,
+#drills,
+#videos,
+#camera,
+#strategy {
+  scroll-margin-top: 80px;
+}
+section + section { border-top: 1px solid var(--line); }
 
 h2 {
-  font-size: 1.5rem;
-  color: var(--green-dark);
-  margin-bottom: 20px;
+  font-family: var(--font-display);
+  font-size: clamp(1.55rem, 7vw, 2.45rem);
+  line-height: 1.08;
+  color: var(--green-deep);
+  margin-bottom: 22px;
   font-weight: 700;
-  letter-spacing: -0.3px;
+  text-wrap: balance;
 }
 h3 {
-  font-size: 1.15rem;
-  color: var(--green-mid);
+  font-size: clamp(1.08rem, 4.2vw, 1.35rem);
+  line-height: 1.2;
+  color: var(--green);
   margin: 24px 0 12px;
-  font-weight: 600;
+  font-weight: 760;
+  text-wrap: pretty;
 }
 h4 {
   font-size: 1rem;
-  color: var(--text);
+  color: var(--ink);
   margin: 16px 0 8px;
-  font-weight: 600;
+  font-weight: 760;
 }
 
-p { margin-bottom: 14px; color: var(--text); }
-p.muted { color: var(--text-light); font-size: 0.95rem; }
+p { margin-bottom: 14px; color: var(--ink); max-width: 72ch; }
+p.muted { color: var(--muted); font-size: 0.95rem; }
 
 /* Cards */
 .card {
-  background: var(--white);
+  --card-border: var(--line);
+  background: var(--surface);
+  border: 1px solid var(--card-border);
   border-radius: var(--radius);
-  padding: 24px;
+  padding: clamp(18px, 5vw, 24px);
   margin-bottom: 20px;
-  box-shadow: var(--shadow);
-  border-left: 4px solid var(--green-light);
+  box-shadow: var(--shadow-tight);
+  position: relative;
+  overflow: hidden;
 }
-.card.diagnosis { border-left-color: var(--red); }
-.card.key-point { border-left-color: var(--accent); }
-.card.drill { border-left-color: var(--blue); }
-.card.video { border-left-color: var(--green-dark); background: #f0f7f0; }
+.card::before {
+  content: '';
+  position: absolute;
+  right: -54px;
+  bottom: -58px;
+  width: 190px;
+  height: 118px;
+  border: 1px solid oklch(36% 0.08 150 / 0.11);
+  border-radius: 50%;
+  transform: rotate(-8deg);
+  pointer-events: none;
+}
+.card > * { position: relative; }
+.card.diagnosis { --card-border: oklch(78% 0.08 31); background: var(--danger-wash); }
+.card.key-point { --card-border: oklch(78% 0.1 83); background: var(--amber-wash); }
+.card.drill { --card-border: oklch(80% 0.07 244); background: var(--blue-wash); }
+.card.video { --card-border: var(--line-strong); background: var(--surface-green); }
+.card.diagnosis::before { border-color: oklch(48% 0.16 31 / 0.13); }
+.card.key-point::before { border-color: oklch(55% 0.13 83 / 0.16); }
+.card.drill::before { border-color: oklch(42% 0.11 244 / 0.14); }
 
 .card-label {
   display: inline-block;
   font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  padding: 3px 8px;
-  border-radius: 4px;
-  margin-bottom: 10px;
+  letter-spacing: 0.06em;
+  padding: 4px 9px;
+  border-radius: 999px;
+  margin-bottom: 12px;
 }
-.card-label.diag { background: #fde8e8; color: var(--red); }
-.card-label.key { background: #fef3cd; color: #856404; }
-.card-label.drill-label { background: #d6eaf8; color: var(--blue); }
-.card-label.video-label { background: var(--green-pale); color: var(--green-dark); }
-.card-label.week-label { background: var(--green-dark); color: var(--white); }
+.card-label.diag { background: oklch(88% 0.06 31); color: var(--danger); }
+.card-label.key { background: oklch(88% 0.08 83); color: oklch(34% 0.08 83); }
+.card-label.drill-label { background: oklch(88% 0.055 244); color: var(--blue); }
+.card-label.video-label { background: var(--green-wash); color: var(--green-deep); }
+.card-label.week-label { background: var(--green-deep); color: var(--white); }
 
 /* Week tabs */
 .week-tabs {
@@ -163,23 +791,29 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
   gap: 8px;
   margin-bottom: 24px;
   flex-wrap: wrap;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) + 8px);
+  background: oklch(99% 0.006 118 / 0.78);
+  box-shadow: var(--shadow-tight);
 }
 .week-tab {
-  padding: 10px 20px;
-  border-radius: 8px;
-  border: 2px solid var(--sand);
-  background: var(--white);
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
   cursor: pointer;
-  font-weight: 600;
+  font-weight: 760;
   font-size: 0.9rem;
-  transition: all 0.2s;
-  color: var(--text-light);
+  transition: background 180ms var(--ease), color 180ms var(--ease), border-color 180ms var(--ease), transform 180ms var(--ease);
+  color: var(--muted);
 }
-.week-tab:hover { border-color: var(--green-light); color: var(--green-mid); }
+.week-tab:hover { border-color: var(--green-soft); color: var(--green); transform: translateY(-1px); }
 .week-tab.active {
-  background: var(--green-dark);
+  background: var(--green-deep);
   color: var(--white);
-  border-color: var(--green-dark);
+  border-color: var(--green-deep);
 }
 
 .week-content { display: none; }
@@ -187,44 +821,121 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
 
 /* Day blocks */
 .day-block {
-  background: var(--white);
+  background:
+    linear-gradient(135deg, oklch(100% 0 0 / 0.72), oklch(96% 0.025 148 / 0.72)),
+    var(--surface);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   margin-bottom: 16px;
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-tight);
   overflow: hidden;
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 0fr;
+  transition: grid-template-rows 260ms var(--ease), border-color 180ms var(--ease), box-shadow 180ms var(--ease);
+}
+.day-block::before {
+  content: '';
+  position: absolute;
+  right: -82px;
+  bottom: -70px;
+  width: 210px;
+  height: 128px;
+  border: 1px solid oklch(36% 0.08 150 / 0.09);
+  border-radius: 50%;
+  transform: rotate(7deg);
+  pointer-events: none;
+}
+.day-block.open {
+  grid-template-rows: auto 1fr;
+  box-shadow: var(--shadow);
+}
+.day-block.completed {
+  border-color: var(--green-soft);
+  background:
+    linear-gradient(135deg, oklch(99% 0.004 118 / 0.72), oklch(92% 0.055 148 / 0.72)),
+    var(--surface-green);
 }
 .day-header {
-  padding: 16px 20px;
+  padding: 16px 18px;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: var(--white);
-  transition: background 0.2s;
+  gap: 14px;
+  background: var(--surface);
+  transition: background 180ms var(--ease);
   user-select: none;
+  position: relative;
 }
-.day-header:hover { background: #f5f5f0; }
-.day-header h4 { margin: 0; font-size: 1rem; }
+.day-header:hover { background: var(--surface-green); }
+.day-block.completed .day-header { background: oklch(96% 0.032 148 / 0.82); }
+.day-header h4 { margin: 0; font-size: 1rem; line-height: 1.25; }
+.day-meta {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
 .day-header .duration {
   font-size: 0.8rem;
-  color: var(--text-light);
-  background: var(--sand);
-  padding: 4px 10px;
-  border-radius: 12px;
+  color: var(--muted);
+  background: var(--ground);
+  padding: 5px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
 }
 .day-header .chevron {
   font-size: 1.2rem;
-  color: var(--text-light);
-  transition: transform 0.3s;
+  color: var(--muted);
+  transition: transform 220ms var(--ease);
 }
-.day-block.open .day-header .chevron { transform: rotate(180deg); }
+.day-open-toggle {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background 180ms var(--ease), border-color 180ms var(--ease);
+}
+.day-open-toggle:hover {
+  background: var(--green-wash);
+  border-color: var(--green-soft);
+}
+.day-block.open .day-open-toggle .chevron { transform: rotate(180deg); }
+.done-toggle {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 760;
+  cursor: pointer;
+  transition: background 180ms var(--ease), color 180ms var(--ease), border-color 180ms var(--ease);
+}
+.done-toggle:hover {
+  border-color: var(--green-soft);
+  color: var(--green-deep);
+}
+.day-block.completed .done-toggle {
+  background: var(--green-deep);
+  border-color: var(--green-deep);
+  color: var(--white);
+}
 .day-body {
-  max-height: 0;
+  min-height: 0;
   overflow: hidden;
-  transition: max-height 0.4s ease;
+  position: relative;
 }
-.day-block.open .day-body { max-height: 3000px; }
-.day-body-inner { padding: 0 20px 20px; }
+.day-body-inner { padding: 0 18px 22px; }
 
 /* Drill steps */
 .drill-step {
@@ -235,9 +946,9 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
 }
 .drill-num {
   flex-shrink: 0;
-  width: 28px;
-  height: 28px;
-  background: var(--green-dark);
+  width: 30px;
+  height: 30px;
+  background: var(--green-deep);
   color: var(--white);
   border-radius: 50%;
   display: flex;
@@ -248,32 +959,33 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
   margin-top: 2px;
 }
 .drill-text { flex: 1; font-size: 0.95rem; }
-.drill-text strong { color: var(--green-dark); }
+.drill-text strong { color: var(--green-deep); }
 
 /* Video links */
 .video-link {
   display: flex;
   gap: 12px;
   align-items: center;
-  padding: 12px 16px;
-  background: #f0f7f0;
+  min-height: 58px;
+  padding: 12px 14px;
+  background: var(--surface-green);
   border-radius: 8px;
   margin: 10px 0;
   text-decoration: none;
-  color: var(--text);
-  transition: all 0.2s;
-  border: 1px solid var(--green-pale);
+  color: var(--ink);
+  transition: transform 180ms var(--ease), background 180ms var(--ease), box-shadow 180ms var(--ease), border-color 180ms var(--ease);
+  border: 1px solid var(--line-strong);
 }
 .video-link:hover {
-  background: var(--green-pale);
+  background: var(--green-wash);
   transform: translateY(-1px);
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-tight);
 }
 .video-icon {
   flex-shrink: 0;
   width: 36px;
   height: 36px;
-  background: var(--red);
+  background: var(--danger);
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -282,7 +994,7 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
 .video-icon svg { width: 18px; height: 18px; fill: white; }
 .video-info { flex: 1; }
 .video-title { font-weight: 600; font-size: 0.9rem; }
-.video-coach { font-size: 0.8rem; color: var(--text-light); }
+.video-coach { font-size: 0.8rem; color: var(--muted); }
 
 /* Checklist */
 .checklist { list-style: none; padding: 0; }
@@ -290,7 +1002,7 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
   padding: 8px 0 8px 32px;
   position: relative;
   font-size: 0.95rem;
-  border-bottom: 1px solid #f0ede5;
+  border-bottom: 1px solid var(--line);
 }
 .checklist li:last-child { border-bottom: none; }
 .checklist li::before {
@@ -300,13 +1012,13 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
   top: 11px;
   width: 18px;
   height: 18px;
-  border: 2px solid var(--sand);
+  border: 2px solid var(--line);
   border-radius: 4px;
   cursor: pointer;
 }
 .checklist li.checked::before {
-  background: var(--green-mid);
-  border-color: var(--green-mid);
+  background: var(--green);
+  border-color: var(--green);
 }
 .checklist li.checked::after {
   content: '✓';
@@ -320,47 +1032,91 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
 
 /* Key concept callouts */
 .callout {
-  background: linear-gradient(135deg, #fef9e7, #fef3cd);
+  background: var(--amber-wash);
+  border: 1px solid oklch(80% 0.095 83);
   border-radius: var(--radius);
   padding: 20px 24px;
   margin: 20px 0;
-  border-left: 4px solid var(--accent);
+  position: relative;
+  overflow: hidden;
 }
+.callout::after {
+  content: '';
+  position: absolute;
+  right: -44px;
+  top: -38px;
+  width: 144px;
+  height: 88px;
+  border: 1px solid oklch(42% 0.1 83 / 0.16);
+  border-radius: 50%;
+  transform: rotate(13deg);
+  pointer-events: none;
+}
+.callout > * { position: relative; }
 .callout-title {
   font-weight: 700;
   font-size: 0.85rem;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: #856404;
+  letter-spacing: 0.06em;
+  color: oklch(34% 0.08 83);
   margin-bottom: 6px;
 }
 
 .callout.green {
-  background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
-  border-left-color: var(--green-mid);
+  background: var(--green-wash);
+  border-color: var(--line-strong);
 }
-.callout.green .callout-title { color: var(--green-dark); }
+.callout.green::after { border-color: oklch(36% 0.08 150 / 0.16); }
+.callout.green .callout-title { color: var(--green-deep); }
 
 /* Progress tracker */
+#progress-section {
+  margin: 22px 0 26px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(105deg, oklch(99% 0.004 118 / 0.9), oklch(94% 0.038 148 / 0.74)),
+    var(--surface);
+  box-shadow: var(--shadow-tight);
+  position: relative;
+  overflow: hidden;
+}
+#progress-section::before {
+  content: '';
+  position: absolute;
+  inset: auto -56px -52px auto;
+  width: 190px;
+  height: 104px;
+  border: 1px solid oklch(36% 0.08 150 / 0.12);
+  border-radius: 50%;
+  transform: rotate(-11deg);
+  pointer-events: none;
+}
 .progress-bar {
   width: 100%;
   height: 12px;
-  background: var(--sand);
+  background: var(--line);
   border-radius: 6px;
   overflow: hidden;
   margin: 16px 0;
+  position: relative;
 }
 .progress-fill {
+  width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, var(--green-light), var(--green-dark));
+  background: linear-gradient(90deg, var(--amber), var(--green-deep));
   border-radius: 6px;
-  transition: width 0.5s ease;
+  transform: scaleX(var(--progress-scale, 0));
+  transform-origin: left center;
+  transition: transform 360ms var(--ease);
 }
 .progress-label {
   display: flex;
   justify-content: space-between;
   font-size: 0.85rem;
-  color: var(--text-light);
+  color: var(--muted);
+  position: relative;
 }
 
 /* Camera setup diagrams */
@@ -373,12 +1129,29 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
 .camera-angle {
   flex: 1;
   min-width: 200px;
-  background: var(--white);
+  background:
+    linear-gradient(160deg, var(--surface), var(--surface-green));
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 20px;
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-tight);
   text-align: center;
+  position: relative;
+  overflow: hidden;
 }
+.camera-angle::before {
+  content: '';
+  position: absolute;
+  left: -54px;
+  top: 24px;
+  width: 140px;
+  height: 86px;
+  border: 1px solid oklch(36% 0.08 150 / 0.1);
+  border-radius: 50%;
+  transform: rotate(12deg);
+  pointer-events: none;
+}
+.camera-angle > * { position: relative; }
 .camera-angle .angle-icon {
   font-size: 2.5rem;
   margin-bottom: 8px;
@@ -388,49 +1161,310 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
   text-align: left;
   font-size: 0.85rem;
   padding-left: 16px;
-  color: var(--text-light);
+  color: var(--muted);
 }
 .camera-angle li { margin-bottom: 4px; }
 
+.site-footer {
+  text-align: center;
+  padding: 42px 0 64px;
+  position: relative;
+}
+.site-footer::before {
+  content: '';
+  display: block;
+  width: min(240px, 62vw);
+  height: 1px;
+  margin: 0 auto 20px;
+  background: linear-gradient(90deg, transparent, var(--line-strong), transparent);
+}
+.site-footer p {
+  margin-inline: auto;
+}
+.site-footer p:first-child { font-size: 0.85rem; }
+.site-footer p:last-child {
+  font-size: 0.8rem;
+  margin-top: 4px;
+}
+
 /* Responsive */
 @media (max-width: 600px) {
-  .hero { padding: 40px 16px 36px; }
-  .hero h1 { font-size: 1.6rem; }
-  .container { padding: 0 16px; }
-  .card { padding: 18px; }
+  .nav { padding-inline: 12px; }
+  .nav-inner { min-width: 0; width: 100%; padding: 5px; }
+  .nav a { flex: 1 1 0; min-height: 40px; padding: 0 5px; gap: 5px; font-size: 0.76rem; }
+  .nav svg { width: 17px; height: 17px; }
+  .next-session { padding-inline: 26px; }
+  .next-session-top { gap: 10px; }
+  .next-session a { min-height: 46px; padding: 0 11px; gap: 6px; font-size: 0.86rem; }
+  .next-session a svg { width: 18px; height: 18px; }
   .week-tabs { gap: 6px; }
-  .week-tab { padding: 8px 14px; font-size: 0.85rem; }
+  .week-tab { flex: 1 1 calc(50% - 6px); padding: 0 10px; font-size: 0.85rem; }
+  .overview-week-tabs { gap: 8px; }
+  .overview-week-tabs span { font-size: 0.68rem; min-height: 38px; }
+  .today-stats { grid-template-columns: repeat(3, 1fr); }
+  .today-stat {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    gap: 6px;
+    padding: 0 6px;
+  }
+  .today-stat:first-child { padding-left: 0; }
+  .today-stat svg { width: 28px; height: 28px; }
+  .day-header { align-items: flex-start; flex-direction: column; }
+  .day-meta { width: 100%; justify-content: space-between; }
+  .drill-step { gap: 11px; }
+  .video-link { align-items: flex-start; }
   .camera-diagram { flex-direction: column; }
+}
+
+@media (min-width: 541px) {
+  .hero-flank {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: calc((100% - min(100%, var(--hero-column))) / 2);
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+    background:
+      linear-gradient(to top, var(--cream) 0%, var(--cream) 11%, transparent 24%),
+      radial-gradient(ellipse 120% 85% at var(--flank-glow-x, 100%) 34%, oklch(44% 0.11 154 / 0.42), transparent 62%),
+      linear-gradient(var(--flank-tilt, 165deg), oklch(30% 0.075 152), oklch(15% 0.045 150));
+  }
+  .hero-flank::before {
+    content: '';
+    position: absolute;
+    inset: -36px -36px -36px 0;
+    background: url("design/wallpaper-hero-crop.png") var(--flank-image-x, right) top / var(--hero-column) auto no-repeat;
+    filter: blur(22px) saturate(1.12) brightness(0.94);
+    opacity: 0.78;
+    transform: scale(var(--flank-scale, 1.08));
+    transform-origin: var(--flank-origin, right top);
+  }
+  .hero-flank::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--flank-vignette, to right), oklch(8% 0.025 150 / 0.55) 0%, transparent 68%),
+      var(--flank-contour);
+    background-size: 100% 100%, 360px auto;
+    background-position: center, var(--flank-contour-x, 58%) 16%;
+    background-repeat: no-repeat;
+    opacity: 0.92;
+  }
+  .hero-flank--left {
+    left: 0;
+    --flank-glow-x: 100%;
+    --flank-image-x: right;
+    --flank-origin: right top;
+    --flank-vignette: to right;
+    --flank-contour-x: 62%;
+  }
+  .hero-flank--right {
+    right: 0;
+    --flank-glow-x: 0%;
+    --flank-image-x: left;
+    --flank-origin: left top;
+    --flank-scale: 1.08;
+    --flank-tilt: 195deg;
+    --flank-vignette: to left;
+    --flank-contour-x: 38%;
+  }
+  .hero-flank--right::before {
+    inset: -36px 0 -36px -36px;
+  }
+  .hero {
+    position: relative;
+    z-index: 1;
+  }
+  .nav {
+    position: sticky;
+  }
+  .nav::before,
+  .nav::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: calc((100% - min(100%, var(--hero-column))) / 2);
+    background: var(--cream);
+    pointer-events: none;
+    z-index: -1;
+  }
+  .nav::before { left: 0; }
+  .nav::after { right: 0; }
+}
+
+@media (min-width: 641px) {
+  .container {
+    border-radius: 0 0 28px 28px;
+    box-shadow: 0 28px 90px oklch(0% 0 0 / 0.42);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* Print */
 @media print {
-  .nav, .hero::after { display: none; }
-  .day-body { max-height: none !important; }
+  .nav, .hero-flank { display: none; }
+  .day-block { grid-template-rows: auto 1fr !important; box-shadow: none; }
   section { break-inside: avoid; }
 }
 </style>
 </head>
 <body>
 
-<div class="hero">
-  <h1>Fix the Two-Way Miss</h1>
-  <p class="subtitle">A 30-Day Ball Striking Plan</p>
-  <div class="tagline">Block Right & Pull-Hook — Eliminated</div>
+<div class="hero-shell">
+  <div class="hero-flank hero-flank--left" aria-hidden="true"></div>
+  <div class="hero-flank hero-flank--right" aria-hidden="true"></div>
+  <div class="hero">
+  <a class="hero-icon hero-menu" href="#plan-overview" aria-label="Jump to plan">
+    <span></span>
+  </a>
+  <a class="hero-icon hero-flag" href="#strategy" aria-label="Jump to course strategy">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 21V5"/><path d="M7 6h9l-2 4 2 4H7"/><ellipse cx="11" cy="21" rx="5" ry="2"/></svg>
+  </a>
+  <div class="course-art" aria-hidden="true">
+    <svg class="course-lines" viewBox="0 0 1200 680" preserveAspectRatio="none">
+      <path d="M-60 86 C 126 132, 188 10, 330 55 S 555 172, 706 118 S 952 18, 1260 78" />
+      <path d="M-80 145 C 86 176, 210 110, 342 128 S 560 252, 700 204 S 962 122, 1260 178" />
+      <path d="M-90 290 C 110 250, 225 328, 380 270 S 610 182, 780 250 S 1000 322, 1270 252" />
+      <path d="M-80 410 C 148 470, 268 342, 444 400 S 675 512, 840 430 S 1040 338, 1280 428" />
+      <path d="M-80 536 C 120 478, 262 624, 448 552 S 704 472, 872 548 S 1080 638, 1260 548" />
+      <path d="M90 650 C 230 572, 350 678, 514 612 S 772 552, 930 624 S 1120 712, 1260 642" />
+    </svg>
+    <span class="course-figure one"></span>
+    <span class="course-figure two"></span>
+    <span class="course-figure three"></span>
+    <span class="course-flag"></span>
+    <span class="course-cart"></span>
+  </div>
+  <div class="hero-inner">
+    <h1>Fix the Two-Way Miss</h1>
+    <p class="subtitle">30-Day Ball Striking Plan</p>
+    <span class="hero-rule" aria-hidden="true"></span>
+    <p class="tagline">A focused plan. A repeatable swing.<br>Better ball striking, lower scores.</p>
+  </div>
+  <svg class="hero-wave" viewBox="0 0 852 765" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M 0,765 L 0,702 C 6,724 22,748 40,756 C 46.7,757.5 53.3,762 60,763 C 66.7,761.0 73.3,759.3 80,758 C 86.7,756.7 93.3,756.0 100,755 C 106.7,754.0 113.3,752.8 120,752 C 126.7,751.2 133.3,750.5 140,750 C 146.7,749.5 153.3,749.3 160,749 C 166.7,748.7 173.3,748.2 180,748 C 186.7,747.8 193.3,747.8 200,748 C 206.7,748.2 213.3,748.8 220,749 C 226.7,749.2 233.3,748.7 240,749 C 246.7,749.3 253.3,750.5 260,751 C 266.7,751.5 273.3,751.5 280,752 C 286.7,752.5 293.3,753.3 300,754 C 306.7,754.7 313.3,755.3 320,756 C 326.7,756.7 333.3,757.3 340,758 C 346.7,758.7 353.3,759.3 360,760 C 366.7,760.7 373.3,761.5 380,762 C 386.7,762.5 393.3,762.7 400,763 C 406.7,763.3 413.3,763.8 420,764 C 426.7,764.2 433.3,764.0 440,764 C 446.7,764.0 453.3,764.0 460,764 C 466.7,764.0 473.3,764.0 480,764 C 486.7,764.0 493.3,764.0 500,764 C 506.7,764.0 513.3,764.2 520,764 C 526.7,763.8 533.3,763.3 540,763 C 546.7,762.7 553.3,762.3 560,762 C 566.7,761.7 573.3,761.3 580,761 C 586.7,760.7 593.3,760.3 600,760 C 606.7,759.7 613.3,759.5 620,759 C 626.7,758.5 633.3,757.7 640,757 C 646.7,756.3 653.3,755.7 660,755 C 666.7,754.3 673.3,753.8 680,753 C 686.7,752.2 693.3,751.0 700,750 C 706.7,749.0 713.3,748.0 720,747 C 726.7,746.0 733.3,745.2 740,744 C 746.7,742.8 753.3,741.5 760,740 C 766.7,738.5 773.3,736.7 780,735 C 786.7,733.3 793.3,732.0 800,730 C 816,742 832,698 852,702 L 852,765 Z" />
+  </svg>
+  </div>
 </div>
 
 <nav class="nav">
   <div class="nav-inner">
-    <a href="#diagnosis">Diagnosis</a>
-    <a href="#plan">30-Day Plan</a>
-    <a href="#drills">Drill Library</a>
-    <a href="#videos">Video Guide</a>
-    <a href="#camera">Film Your Swing</a>
-    <a href="#strategy">Course Strategy</a>
+    <a href="#plan-overview" class="active" aria-current="true">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9 21v-6h6v6"/></svg>
+      Plan
+    </a>
+    <a href="#drills">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3c2 4 1.4 7.2-1.8 9.5l-3.7 2.7c-1.9 1.4-2.4 3.6-1.2 5.8"/><path d="M5 19c3.1.8 6.2.3 9.3-1.6"/></svg>
+      Drills
+    </a>
+    <a href="#videos">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="14" rx="3"/><path d="m10 9 5 3-5 3Z"/></svg>
+      Videos
+    </a>
+    <a href="#progress-section">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19V9"/><path d="M12 19V5"/><path d="M19 19v-7"/><path d="M3 19h18"/></svg>
+      Track
+    </a>
+    <a href="#camera">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10v18H7z"/><path d="M10 7h4"/><path d="M10 11h4"/><path d="M10 15h3"/><path d="M5 7H3"/><path d="M5 12H3"/><path d="M5 17H3"/></svg>
+      Notes
+    </a>
   </div>
 </nav>
 
 <div class="container">
+
+<!-- ==================== PLAN OVERVIEW ==================== -->
+<section class="home-dashboard" id="plan-overview">
+  <div class="next-session">
+    <div class="next-session-top">
+      <div>
+        <span class="next-session-label">Next session</span>
+        <h2>Day 5</h2>
+        <p class="next-session-title">The Fade Challenge</p>
+      </div>
+      <a href="#plan">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M8 3v4M16 3v4M4 10h16"/></svg>
+        View plan
+      </a>
+    </div>
+    <div class="session-divider"></div>
+    <div class="session-progress-row">
+      <span>Overall progress</span>
+      <span id="home-progress-count">4 of 16 days</span>
+    </div>
+    <div class="session-progress-bar">
+      <span class="session-progress-fill" id="home-progress-fill" style="--progress-scale: 0.25"></span>
+    </div>
+    <p class="session-progress-note">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 21V4m0 1h10l-1.5 4L16 13H6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+      <span id="home-progress-pct">25% complete</span>
+    </p>
+  </div>
+
+  <div class="today-session">
+    <div class="today-heading">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4"/><path d="M5 5h12l-2.2 4L17 13H5Z"/></svg>
+      <h2>Today’s session</h2>
+    </div>
+    <p>Week 2 · Build Control</p>
+    <div class="overview-week-tabs" aria-hidden="true">
+      <span>Week 1</span>
+      <span class="active">Week 2</span>
+      <span>Week 3</span>
+      <span>Week 4</span>
+    </div>
+    <article class="today-card" aria-labelledby="today-card-title">
+      <div class="today-card-head">
+        <span class="today-number">5</span>
+        <h3 id="today-card-title" class="today-card-title">The Fade Challenge</h3>
+        <span class="today-card-duration">75 min</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>
+      </div>
+      <div class="today-card-body">
+        <div class="today-focus">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="m16 8 4-4M20 4v5h-5"/></svg>
+          <div>
+            <span class="today-focus-label">Focus</span>
+            <p>Club path out-to-in with face-to-path control.</p>
+          </div>
+        </div>
+        <div class="today-stats">
+          <div class="today-stat">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14l-2 13H7L5 7Z"/><path d="M8 7l1-3h6l1 3"/><path d="M8 11h8M9 15h6"/></svg>
+            <span><strong>Balls</strong>60-80</span>
+          </div>
+          <div class="today-stat">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h4l2-3h4l2 3h4v11H4z"/><circle cx="12" cy="13.5" r="3.5"/></svg>
+            <span><strong>Film</strong>Down the line</span>
+          </div>
+          <div class="today-stat">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 21V4m0 1h10l-1.5 4L16 13H6"/><ellipse cx="10" cy="21" rx="6" ry="2"/></svg>
+            <span><strong>Course</strong>Short game</span>
+          </div>
+        </div>
+        <button class="done-wide" type="button" id="today-done-toggle">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></svg>
+          Mark done
+        </button>
+      </div>
+    </article>
+  </div>
+</section>
 
 <!-- ==================== DIAGNOSIS ==================== -->
 <section id="diagnosis">
@@ -439,7 +1473,7 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
   <div class="card diagnosis">
     <span class="card-label diag">The Problem</span>
     <h3 style="margin-top:0">The Two-Way Miss: Push-Right & Pull-Hook</h3>
-    <p>Out of 100 balls, you're hitting roughly 40 push-right (or push-fade), 40 pull-hooks, and 20 straight. Your good shot is a draw. This is one of the most common patterns for skilled golfers — and it has a clear mechanical cause.</p>
+    <p>Out of 100 balls, you're hitting roughly 40 push-right (or push-fade), 40 pull-hooks, and 20 straight. Your good shot is a draw. This is one of the most common patterns for skilled golfers - and it has a clear mechanical cause.</p>
   </div>
 
   <div class="card key-point">
@@ -449,7 +1483,7 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
     <ul style="margin: 12px 0 12px 20px;">
       <li><strong>Push-right:</strong> The clubface is open to the target but roughly square to your (too-inside) path. Ball starts right and stays right.</li>
       <li><strong>Pull-hook:</strong> Your hands instinctively flip to close the face. When they over-rotate, the face snaps closed relative to the path. Ball starts left and curves more left.</li>
-      <li><strong>Good draw:</strong> The flip timing happens to be perfect — face is slightly closed to path, slightly open to target. This is a 20% window.</li>
+      <li><strong>Good draw:</strong> The flip timing happens to be perfect - face is slightly closed to path, slightly open to target. This is a 20% window.</li>
     </ul>
     <p style="margin-bottom:0"><strong>The core issue is not your hands.</strong> It's that your path is so far inside that the margin for correct face angle is impossibly small. You're playing a timing game you can't win consistently.</p>
   </div>
@@ -463,11 +1497,11 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
   </div>
 
   <div class="card">
-    <span class="card-label key">The Fix — Overview</span>
+    <span class="card-label key">The Fix - Overview</span>
     <h3 style="margin-top:0">Moderate the Path, Train the Rotation</h3>
     <p>You do NOT need to rebuild your swing. Your natural draw tendency is an asset. The plan is to:</p>
     <ol style="margin: 12px 0 0 20px;">
-      <li><strong>Neutralize your path</strong> from +6 degrees to +1 to +3 degrees — still a draw, but with a much wider margin for face error</li>
+      <li><strong>Neutralize your path</strong> from +6 degrees to +1 to +3 degrees - still a draw, but with a much wider margin for face error</li>
       <li><strong>Train continuous body rotation</strong> through impact so the face squares naturally without a hand flip</li>
       <li><strong>Fix the takeaway</strong> so the club doesn't get trapped behind you in the first place</li>
       <li><strong>Build a stock 3-5 yard draw</strong> you can repeat under pressure</li>
@@ -486,7 +1520,7 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
       <span id="progress-pct">0%</span>
     </div>
     <div class="progress-bar">
-      <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+      <div class="progress-fill" id="progress-fill" style="--progress-scale: 0"></div>
     </div>
   </div>
 
@@ -500,14 +1534,14 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
   <!-- WEEK 1 -->
   <div class="week-content active" id="week-1">
     <div class="card">
-      <span class="card-label week-label">Week 1 — Awareness & Takeaway</span>
-      <p>This week is about understanding what's happening and fixing the root: your takeaway and initial backswing position. No full-speed swings yet — controlled reps to build new feel.</p>
+      <span class="card-label week-label">Week 1 - Awareness & Takeaway</span>
+      <p>This week is about understanding what's happening and fixing the root: your takeaway and initial backswing position. No full-speed swings yet - controlled reps to build new feel.</p>
     </div>
 
     <div class="day-block" data-day="1">
       <div class="day-header">
-        <h4>Day 1 — Diagnosis & Baseline</h4>
-        <div style="display:flex;gap:8px;align-items:center">
+        <h4>Day 1 - Diagnosis & Baseline</h4>
+        <div class="day-meta">
           <span class="duration">45 min | Range</span>
           <span class="chevron">▼</span>
         </div>
@@ -527,7 +1561,7 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
 
         <div class="drill-step">
           <div class="drill-num">3</div>
-          <div class="drill-text"><strong>Alignment stick check:</strong> Lay a stick on the ground pointing at your target. Set up to it. Hit 10 more balls. Is the stick pointing where you think it is? Many golfers with a push-right miss aim left to compensate — which makes the pull-hook worse.</div>
+          <div class="drill-text"><strong>Alignment stick check:</strong> Lay a stick on the ground pointing at your target. Set up to it. Hit 10 more balls. Is the stick pointing where you think it is? Many golfers with a push-right miss aim left to compensate - which makes the pull-hook worse.</div>
         </div>
 
         <div class="drill-step">
@@ -535,19 +1569,19 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
           <div class="drill-text"><strong>Watch before next session:</strong></div>
         </div>
 
-        <a href="https://www.youtube.com/watch?v=xZX0ApMN1r4" target="_blank" class="video-link">
+        <a href="https://www.youtube.com/watch?v=YveiDPsw0RA" target="_blank" class="video-link">
           <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
           <div class="video-info">
-            <div class="video-title">Control the Club Face at Impact</div>
-            <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+            <div class="video-title">This Top Coach Might Have SOLVED Golf's #1 Problem</div>
+            <div class="video-coach">Chris Mayson - Golf Digest Top 50</div>
           </div>
         </a>
 
-        <a href="https://www.youtube.com/watch?v=yBr_9QxZseU" target="_blank" class="video-link">
+        <a href="https://www.youtube.com/watch?v=7kFC9WkriLM" target="_blank" class="video-link">
           <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
           <div class="video-info">
-            <div class="video-title">How to Get Unstuck in the Golf Swing</div>
-            <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+            <div class="video-title">Face to Path Explained</div>
+            <div class="video-coach">Martin Chuck - Tour Striker</div>
           </div>
         </a>
       </div></div>
@@ -555,8 +1589,8 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
 
     <div class="day-block" data-day="2">
       <div class="day-header">
-        <h4>Day 2 — Takeaway Reset</h4>
-        <div style="display:flex;gap:8px;align-items:center">
+        <h4>Day 2 - Takeaway Reset</h4>
+        <div class="day-meta">
           <span class="duration">30 min | Range or Home</span>
           <span class="chevron">▼</span>
         </div>
@@ -571,19 +1605,19 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
 
         <div class="drill-step">
           <div class="drill-num">2</div>
-          <div class="drill-text"><strong>Width drill — Chris Mayson's key concept (10 min):</strong> Feel like you're pushing the grip end away from your body in the takeaway. The lead arm should stay extended, creating a wide arc. Think: "Reach away, not around." Make half-swings only, focusing on this wider takeaway.</div>
+          <div class="drill-text"><strong>Width drill - Chris Mayson's key concept (10 min):</strong> Feel like you're pushing the grip end away from your body in the takeaway. The lead arm should stay extended, creating a wide arc. Think: "Reach away, not around." Make half-swings only, focusing on this wider takeaway.</div>
         </div>
 
         <div class="drill-step">
           <div class="drill-num">3</div>
-          <div class="drill-text"><strong>If at the range:</strong> Hit 20 balls with this wider takeaway feel. Use 3/4 swings only, 7-iron. Don't worry about where the ball goes — just groove the new takeaway.</div>
+          <div class="drill-text"><strong>If at the range:</strong> Hit 20 balls with this wider takeaway feel. Use 3/4 swings only, 7-iron. Don't worry about where the ball goes - just groove the new takeaway.</div>
         </div>
 
         <a href="https://www.youtube.com/watch?v=nyb11lvrSP0" target="_blank" class="video-link">
           <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
           <div class="video-info">
             <div class="video-title">The Coach of World #1s Added Width to My Swing</div>
-            <div class="video-coach">Chris Mayson — Golf Digest Top 50 Teacher</div>
+            <div class="video-coach">Chris Mayson - Golf Digest Top 50</div>
           </div>
         </a>
 
@@ -591,7 +1625,7 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
           <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
           <div class="video-info">
             <div class="video-title">Takeaway and Backswing Training</div>
-            <div class="video-coach">Michael Alexander — Alexander Golf</div>
+            <div class="video-coach">Michael Alexander - Alexander Golf</div>
           </div>
         </a>
       </div></div>
@@ -599,8 +1633,8 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
 
     <div class="day-block" data-day="3">
       <div class="day-header">
-        <h4>Day 3 — Path Awareness</h4>
-        <div style="display:flex;gap:8px;align-items:center">
+        <h4>Day 3 - Path Awareness</h4>
+        <div class="day-meta">
           <span class="duration">45 min | Range</span>
           <span class="chevron">▼</span>
         </div>
@@ -615,19 +1649,27 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
 
         <div class="drill-step">
           <div class="drill-num">2</div>
-          <div class="drill-text"><strong>"Swing left" feel (15 min):</strong> This will feel completely wrong at first. Set up normally, then feel like you're swinging the club out to left field (for a righty). You're not actually swinging over the top — you're just counteracting your deeply ingrained inside path. Hit 20 balls with a 7-iron trying to hit gentle fades. If you can hit a fade, your path is getting closer to neutral.</div>
+          <div class="drill-text"><strong>"Swing left" feel (15 min):</strong> This will feel completely wrong at first. Set up normally, then feel like you're swinging the club out to left field (for a righty). You're not actually swinging over the top - you're just counteracting your deeply ingrained inside path. Hit 20 balls with a 7-iron trying to hit gentle fades. If you can hit a fade, your path is getting closer to neutral.</div>
         </div>
 
         <div class="drill-step">
           <div class="drill-num">3</div>
-          <div class="drill-text"><strong>Alternate: draw-fade-draw-fade (15 min):</strong> Hit 10 balls alternating intentional draws and fades. The goal isn't shot shape perfection — it's proving you can influence path direction. Most two-way-miss golfers cannot intentionally hit a fade. Learning to do so is the cure.</div>
+          <div class="drill-text"><strong>Alternate: draw-fade-draw-fade (15 min):</strong> Hit 10 balls alternating intentional draws and fades. The goal isn't shot shape perfection - it's proving you can influence path direction. Most two-way-miss golfers cannot intentionally hit a fade. Learning to do so is the cure.</div>
         </div>
 
-        <a href="https://www.youtube.com/watch?v=mNcP7mEmrJE" target="_blank" class="video-link">
+        <a href="https://www.youtube.com/watch?v=YqZteIl1jss" target="_blank" class="video-link">
           <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
           <div class="video-info">
-            <div class="video-title">STOP Pushing the Ball Right (Hockey Stick + New Drills)</div>
-            <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+            <div class="video-title">The Most Reliable Downswing Drill for a Perfect Swing Path</div>
+            <div class="video-coach">Chris Mayson &amp; Kerrod Gray</div>
+          </div>
+        </a>
+
+        <a href="https://www.youtube.com/watch?v=Mjh6Jl5GaJs" target="_blank" class="video-link">
+          <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          <div class="video-info">
+            <div class="video-title">Fix the Push-Hook: Swing More Left, Not More Right</div>
+            <div class="video-coach">Eric Cogorno</div>
           </div>
         </a>
       </div></div>
@@ -635,8 +1677,8 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
 
     <div class="day-block" data-day="4">
       <div class="day-header">
-        <h4>Day 4 — Feet Together + Rotation</h4>
-        <div style="display:flex;gap:8px;align-items:center">
+        <h4>Day 4 - Feet Together + Rotation</h4>
+        <div class="day-meta">
           <span class="duration">30 min | Range</span>
           <span class="chevron">▼</span>
         </div>
@@ -646,7 +1688,7 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
 
         <div class="drill-step">
           <div class="drill-num">1</div>
-          <div class="drill-text"><strong>Feet-together drill (15 min):</strong> Put your feet completely together. Hit 25 balls with a 7-iron, 3/4 swing. This drill makes it physically impossible to sway, slide, or get stuck. If you can hit it solid with feet together, your rotation is working. Note: you will lose distance. That's fine — you're training sequencing.</div>
+          <div class="drill-text"><strong>Feet-together drill (15 min):</strong> Put your feet completely together. Hit 25 balls with a 7-iron, 3/4 swing. This drill makes it physically impossible to sway, slide, or get stuck. If you can hit it solid with feet together, your rotation is working. Note: you will lose distance. That's fine - you're training sequencing.</div>
         </div>
 
         <div class="drill-step">
@@ -659,11 +1701,11 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
           <div class="drill-text"><strong>Full swings with new feels (10 min):</strong> Hit 15 balls at 80% speed combining: wider takeaway + rotation through impact. Tally your results vs. Day 1 baseline.</div>
         </div>
 
-        <a href="https://www.youtube.com/watch?v=uy7C7-6nhgM" target="_blank" class="video-link">
+        <a href="https://www.youtube.com/watch?v=Q5RllnmsZbQ" target="_blank" class="video-link">
           <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
           <div class="video-info">
-            <div class="video-title">Stop Fighting with Your Hook and Pulled Golf Shots</div>
-            <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+            <div class="video-title">Strike Your Irons Pure - Face to Path for Hookers</div>
+            <div class="video-coach">Danny Maude</div>
           </div>
         </a>
       </div></div>
@@ -673,14 +1715,14 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
   <!-- WEEK 2 -->
   <div class="week-content" id="week-2">
     <div class="card">
-      <span class="card-label week-label">Week 2 — Path Correction & Body Training</span>
-      <p>You've built awareness. Now we ingrain the neutral path and proper rotation with higher-intensity drills. This is the hardest week — the new feels will be uncomfortable. Trust the process.</p>
+      <span class="card-label week-label">Week 2 - Path Correction & Body Training</span>
+      <p>You've built awareness. Now we ingrain the neutral path and proper rotation with higher-intensity drills. This is the hardest week - the new feels will be uncomfortable. Trust the process.</p>
     </div>
 
     <div class="day-block" data-day="5">
       <div class="day-header">
-        <h4>Day 5 — The Fade Challenge</h4>
-        <div style="display:flex;gap:8px;align-items:center">
+        <h4>Day 5 - The Fade Challenge</h4>
+        <div class="day-meta">
           <span class="duration">45 min | Range</span>
           <span class="chevron">▼</span>
         </div>
@@ -695,7 +1737,7 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
 
         <div class="drill-step">
           <div class="drill-num">2</div>
-          <div class="drill-text"><strong>Intentional fade practice (20 min):</strong> Open your stance slightly (feet pointing ~10 yards left of target). Swing along your foot line. Feel like the club exits left after impact. Use 7-iron. Hit 30 balls trying to start the ball straight or slightly left and fade it gently right. Don't worry if they go dead straight — that's actually perfect. It means your path is neutral.</div>
+          <div class="drill-text"><strong>Intentional fade practice (20 min):</strong> Open your stance slightly (feet pointing ~10 yards left of target). Swing along your foot line. Feel like the club exits left after impact. Use 7-iron. Hit 30 balls trying to start the ball straight or slightly left and fade it gently right. Don't worry if they go dead straight - that's actually perfect. It means your path is neutral.</div>
         </div>
 
         <div class="drill-step">
@@ -707,7 +1749,7 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
           <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
           <div class="video-info">
             <div class="video-title">How to Curve the Ball (Train Your Game Ep. 12)</div>
-            <div class="video-coach">Chris Mayson</div>
+            <div class="video-coach">Chris Mayson - Golf Digest Top 50</div>
           </div>
         </a>
       </div></div>
@@ -715,8 +1757,8 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
 
     <div class="day-block" data-day="6">
       <div class="day-header">
-        <h4>Day 6 — Early Extension Fix</h4>
-        <div style="display:flex;gap:8px;align-items:center">
+        <h4>Day 6 - Early Extension Fix</h4>
+        <div class="day-meta">
           <span class="duration">30 min | Home or Range</span>
           <span class="chevron">▼</span>
         </div>
@@ -731,19 +1773,27 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
 
         <div class="drill-step">
           <div class="drill-num">2</div>
-          <div class="drill-text"><strong>Hip rotation isolation (10 min):</strong> Cross your arms over your chest, take your address position. Rotate your hips as if making a downswing — the lead hip should clear back and behind you, not slide toward the target. Do 20 reps, holding the "impact" position for 3 seconds each time. Your belt buckle should face the target while your hips stay back.</div>
+          <div class="drill-text"><strong>Hip rotation isolation (10 min):</strong> Cross your arms over your chest, take your address position. Rotate your hips as if making a downswing - the lead hip should clear back and behind you, not slide toward the target. Do 20 reps, holding the "impact" position for 3 seconds each time. Your belt buckle should face the target while your hips stay back.</div>
         </div>
 
         <div class="drill-step">
           <div class="drill-num">3</div>
-          <div class="drill-text"><strong>If at the range:</strong> Hit 15 balls with a 7-iron, at 70% speed, focusing solely on keeping your hips back while rotating through. Accept bad contact — you're training a motor pattern.</div>
+          <div class="drill-text"><strong>If at the range:</strong> Hit 15 balls with a 7-iron, at 70% speed, focusing solely on keeping your hips back while rotating through. Accept bad contact - you're training a motor pattern.</div>
         </div>
 
-        <a href="https://www.youtube.com/watch?v=3ydc4EgJvqU" target="_blank" class="video-link">
+        <a href="https://www.youtube.com/watch?v=0nKboAo9HvA" target="_blank" class="video-link">
           <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
           <div class="video-info">
-            <div class="video-title">How to Get and Stay Unstuck in the Golf Swing</div>
-            <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+            <div class="video-title">This Trick Finally Fixes Standing Up in the Golf Swing</div>
+            <div class="video-coach">Eric Cogorno</div>
+          </div>
+        </a>
+
+        <a href="https://www.youtube.com/watch?v=qjA9kTMAv20" target="_blank" class="video-link">
+          <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          <div class="video-info">
+            <div class="video-title">How to Sequence Your Golf Swing Like a Pro</div>
+            <div class="video-coach">Chris Mayson &amp; Kerrod Gray</div>
           </div>
         </a>
       </div></div>
@@ -751,14 +1801,14 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
 
     <div class="day-block" data-day="7">
       <div class="day-header">
-        <h4>Day 7 — Driver Day</h4>
-        <div style="display:flex;gap:8px;align-items:center">
+        <h4>Day 7 - Driver Day</h4>
+        <div class="day-meta">
           <span class="duration">45 min | Range</span>
           <span class="chevron">▼</span>
         </div>
       </div>
       <div class="day-body"><div class="day-body-inner">
-        <p><strong>Goal:</strong> Apply the path and rotation fixes to the driver. The driver amplifies every path error — if you can control it here, you own it everywhere.</p>
+        <p><strong>Goal:</strong> Apply the path and rotation fixes to the driver. The driver amplifies every path error - if you can control it here, you own it everywhere.</p>
 
         <div class="drill-step">
           <div class="drill-num">1</div>
@@ -767,24 +1817,24 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
 
         <div class="drill-step">
           <div class="drill-num">2</div>
-          <div class="drill-text"><strong>Driver — 3/4 speed only (15 min):</strong> Tee the ball up. Hit 15 drivers at 75% speed. Focus on: wider takeaway, rotation through impact, and the feel of swinging slightly "left" through the ball. Don't chase distance. A straight 230 beats a hooked 270 into the trees every time.</div>
+          <div class="drill-text"><strong>Driver - 3/4 speed only (15 min):</strong> Tee the ball up. Hit 15 drivers at 75% speed. Focus on: wider takeaway, rotation through impact, and the feel of swinging slightly "left" through the ball. Don't chase distance. A straight 230 beats a hooked 270 into the trees every time.</div>
         </div>
 
         <div class="drill-step">
           <div class="drill-num">3</div>
-          <div class="drill-text"><strong>Driver — fade attempts (10 min):</strong> Try to hit 10 gentle fades with the driver. Open stance slightly, swing along your feet. If you can fade a driver, you have path control. If every fade attempt still draws or hooks, your path is still too inside — go back to the gate drill.</div>
+          <div class="drill-text"><strong>Driver - fade attempts (10 min):</strong> Try to hit 10 gentle fades with the driver. Open stance slightly, swing along your feet. If you can fade a driver, you have path control. If every fade attempt still draws or hooks, your path is still too inside - go back to the gate drill.</div>
         </div>
 
         <div class="drill-step">
           <div class="drill-num">4</div>
-          <div class="drill-text"><strong>Driver — stock shot (10 min):</strong> Hit 10 drivers with your normal setup, trying for a 3-5 yard draw at 85% speed. Tally: push / hook / good / fade.</div>
+          <div class="drill-text"><strong>Driver - stock shot (10 min):</strong> Hit 10 drivers with your normal setup, trying for a 3-5 yard draw at 85% speed. Tally: push / hook / good / fade.</div>
         </div>
 
-        <a href="https://www.youtube.com/watch?v=zDiwPiWM7qM" target="_blank" class="video-link">
+        <a href="https://www.youtube.com/watch?v=abgA4IJfWac" target="_blank" class="video-link">
           <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
           <div class="video-info">
-            <div class="video-title">How to Hit a Driver Straight</div>
-            <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+            <div class="video-title">To Hit Driver Straight, Always Do This Before Every Swing</div>
+            <div class="video-coach">Danny Maude</div>
           </div>
         </a>
 
@@ -792,7 +1842,7 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
           <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
           <div class="video-info">
             <div class="video-title">Can a Top 50 Golf Instructor Fix My Swing?</div>
-            <div class="video-coach">Chris Mayson Lesson</div>
+            <div class="video-coach">Chris Mayson - Golf Digest Top 50</div>
           </div>
         </a>
       </div></div>
@@ -800,8 +1850,8 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
 
     <div class="day-block" data-day="8">
       <div class="day-header">
-        <h4>Day 8 — Integration & Iron Consistency</h4>
-        <div style="display:flex;gap:8px;align-items:center">
+        <h4>Day 8 - Integration & Iron Consistency</h4>
+        <div class="day-meta">
           <span class="duration">45 min | Range</span>
           <span class="chevron">▼</span>
         </div>
@@ -816,7 +1866,7 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
 
         <div class="drill-step">
           <div class="drill-num">2</div>
-          <div class="drill-text"><strong>Club ladder (20 min):</strong> Hit 3 balls each with: PW, 8-iron, 6-iron, 4-iron/hybrid, driver. Same feel for each: wide takeaway, rotate through, gentle draw. Note which clubs still produce the two-way miss. Longer clubs will be harder — that's expected.</div>
+          <div class="drill-text"><strong>Club ladder (20 min):</strong> Hit 3 balls each with: PW, 8-iron, 6-iron, 4-iron/hybrid, driver. Same feel for each: wide takeaway, rotate through, gentle draw. Note which clubs still produce the two-way miss. Longer clubs will be harder - that's expected.</div>
         </div>
 
         <div class="drill-step">
@@ -824,11 +1874,19 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
           <div class="drill-text"><strong>9-ball grid (15 min):</strong> Place 9 balls in a 3×3 grid. Row 1: fade. Row 2: straight. Row 3: draw. Use 7-iron. Work through all 9, pausing between each to reset. This is the single best drill for building face-to-path awareness.</div>
         </div>
 
-        <a href="https://www.youtube.com/watch?v=OzRDyfIrPEk" target="_blank" class="video-link">
+        <a href="https://www.youtube.com/watch?v=9vyUw3TUPwc" target="_blank" class="video-link">
           <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
           <div class="video-info">
-            <div class="video-title">The Best Golf Drills to Instantly Improve Ball Striking</div>
-            <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+            <div class="video-title">How to Hit Ball First, Then the Ground</div>
+            <div class="video-coach">Clay Ballard - Top Speed Golf</div>
+          </div>
+        </a>
+
+        <a href="https://www.youtube.com/watch?v=TTxOaijjAi8" target="_blank" class="video-link">
+          <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          <div class="video-info">
+            <div class="video-title">Always Release the Club Like This</div>
+            <div class="video-coach">Danny Maude</div>
           </div>
         </a>
       </div></div>
@@ -838,14 +1896,14 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
   <!-- WEEK 3 -->
   <div class="week-content" id="week-3">
     <div class="card">
-      <span class="card-label week-label">Week 3 — Grooving the Stock Shot</span>
+      <span class="card-label week-label">Week 3 - Grooving the Stock Shot</span>
       <p>The new path should be starting to feel less foreign. This week is about repetition, building trust, and extending the changes to all clubs. We also introduce on-course thinking.</p>
     </div>
 
     <div class="day-block" data-day="9">
       <div class="day-header">
-        <h4>Day 9 — Stock Draw Factory</h4>
-        <div style="display:flex;gap:8px;align-items:center">
+        <h4>Day 9 - Stock Draw Factory</h4>
+        <div class="day-meta">
           <span class="duration">45 min | Range</span>
           <span class="chevron">▼</span>
         </div>
@@ -860,7 +1918,7 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
 
         <div class="drill-step">
           <div class="drill-num">2</div>
-          <div class="drill-text"><strong>Stock draw — 50 balls (30 min):</strong> Pick a specific target (a flag, a yardage sign). Set up with your alignment stick on the ground. Every ball gets the same routine: look at target, one practice swing feeling the wide takeaway, address, swing with rotation. After every 10 balls, tally push/hook/good. You should see the "good" percentage climbing.</div>
+          <div class="drill-text"><strong>Stock draw - 50 balls (30 min):</strong> Pick a specific target (a flag, a yardage sign). Set up with your alignment stick on the ground. Every ball gets the same routine: look at target, one practice swing feeling the wide takeaway, address, swing with rotation. After every 10 balls, tally push/hook/good. You should see the "good" percentage climbing.</div>
         </div>
 
         <div class="drill-step">
@@ -870,21 +1928,21 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
 
         <div class="callout green">
           <div class="callout-title">Benchmark</div>
-          <p style="margin-bottom:0">By Day 9, you should be hitting 35-40% good shots (up from 20%). If you're still at 20%, revisit the gate drill and fade practice from Week 2 — your path hasn't moved enough yet.</p>
+          <p style="margin-bottom:0">By Day 9, you should be hitting 35-40% good shots (up from 20%). If you're still at 20%, revisit the gate drill and fade practice from Week 2 - your path hasn't moved enough yet.</p>
         </div>
       </div></div>
     </div>
 
     <div class="day-block" data-day="10">
       <div class="day-header">
-        <h4>Day 10 — Full Bag Rotation</h4>
-        <div style="display:flex;gap:8px;align-items:center">
+        <h4>Day 10 - Full Bag Rotation</h4>
+        <div class="day-meta">
           <span class="duration">45 min | Range</span>
           <span class="chevron">▼</span>
         </div>
       </div>
       <div class="day-body"><div class="day-body-inner">
-        <p><strong>Goal:</strong> Apply the stock draw to every club. The feel should be the same — only ball position and swing length change.</p>
+        <p><strong>Goal:</strong> Apply the stock draw to every club. The feel should be the same - only ball position and swing length change.</p>
 
         <div class="drill-step">
           <div class="drill-num">1</div>
@@ -898,14 +1956,14 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
 
         <div class="drill-step">
           <div class="drill-num">3</div>
-          <div class="drill-text"><strong>Simulated holes (15 min):</strong> Pick 5 targets at different distances. For each one: choose the right club, commit to one target, hit one ball. Don't hit a second — just like on the course, you get one shot. Note the result and move on. This trains commitment, which is critical for eliminating the two-way miss.</div>
+          <div class="drill-text"><strong>Simulated holes (15 min):</strong> Pick 5 targets at different distances. For each one: choose the right club, commit to one target, hit one ball. Don't hit a second - just like on the course, you get one shot. Note the result and move on. This trains commitment, which is critical for eliminating the two-way miss.</div>
         </div>
 
-        <a href="https://www.youtube.com/watch?v=JsT2ASvaSHY" target="_blank" class="video-link">
+        <a href="https://www.youtube.com/watch?v=ny9hfKw9U-A" target="_blank" class="video-link">
           <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
           <div class="video-info">
-            <div class="video-title">3 Tips to Help You Hit Your Irons Consistently</div>
-            <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+            <div class="video-title">Swing Inconsistency? Here's What's Wrong</div>
+            <div class="video-coach">Tyler Ferrell - Golf Smart Academy</div>
           </div>
         </a>
       </div></div>
@@ -913,8 +1971,8 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
 
     <div class="day-block" data-day="11">
       <div class="day-header">
-        <h4>Day 11 — Driver Focus + Speed</h4>
-        <div style="display:flex;gap:8px;align-items:center">
+        <h4>Day 11 - Driver Focus + Speed</h4>
+        <div class="day-meta">
           <span class="duration">40 min | Range</span>
           <span class="chevron">▼</span>
         </div>
@@ -934,14 +1992,22 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
 
         <div class="drill-step">
           <div class="drill-num">3</div>
-          <div class="drill-text"><strong>Driver commit drill (15 min):</strong> Pick a fairway-width target. Hit 10 drivers with full pre-shot routine, full commitment, at 85-90% speed. Play the draw — aim right edge of your target, expect 3-5 yards of draw. Tally fairways hit vs. missed, and which side you missed on.</div>
+          <div class="drill-text"><strong>Driver commit drill (15 min):</strong> Pick a fairway-width target. Hit 10 drivers with full pre-shot routine, full commitment, at 85-90% speed. Play the draw - aim right edge of your target, expect 3-5 yards of draw. Tally fairways hit vs. missed, and which side you missed on.</div>
         </div>
 
-        <a href="https://www.youtube.com/watch?v=qxym3MwkSG4" target="_blank" class="video-link">
+        <a href="https://www.youtube.com/watch?v=uuaxsvl5hac" target="_blank" class="video-link">
           <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
           <div class="video-info">
-            <div class="video-title">The Real Secret to Hitting Your Driver Straight</div>
-            <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+            <div class="video-title">Hit Your Driver Straighter in 5 Minutes</div>
+            <div class="video-coach">Athletic Motion Golf</div>
+          </div>
+        </a>
+
+        <a href="https://www.youtube.com/watch?v=goyqzBFVz9g" target="_blank" class="video-link">
+          <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          <div class="video-info">
+            <div class="video-title">How to Create Power in the Golf Swing</div>
+            <div class="video-coach">Chris Mayson &amp; Kerrod Gray</div>
           </div>
         </a>
       </div></div>
@@ -949,8 +2015,8 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
 
     <div class="day-block" data-day="12">
       <div class="day-header">
-        <h4>Day 12 — Pressure Practice</h4>
-        <div style="display:flex;gap:8px;align-items:center">
+        <h4>Day 12 - Pressure Practice</h4>
+        <div class="day-meta">
           <span class="duration">30 min | Range</span>
           <span class="chevron">▼</span>
         </div>
@@ -965,7 +2031,7 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
 
         <div class="callout">
           <div class="callout-title">Mental Key</div>
-          <p style="margin-bottom:0">The two-way miss feeds on indecision. When you stand over a ball worried about both the hook AND the push, you freeze. Pick your stock draw, aim for it, and commit. A committed swing to the wrong target is better than a tentative swing to the right one. You cannot steer the ball — you can only trust your preparation.</p>
+          <p style="margin-bottom:0">The two-way miss feeds on indecision. When you stand over a ball worried about both the hook AND the push, you freeze. Pick your stock draw, aim for it, and commit. A committed swing to the wrong target is better than a tentative swing to the right one. You cannot steer the ball - you can only trust your preparation.</p>
         </div>
       </div></div>
     </div>
@@ -974,14 +2040,14 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
   <!-- WEEK 4 -->
   <div class="week-content" id="week-4">
     <div class="card">
-      <span class="card-label week-label">Week 4 — Course Transfer & Ownership</span>
+      <span class="card-label week-label">Week 4 - Course Transfer & Ownership</span>
       <p>The mechanical work is done. This week is about transferring range gains to the course, building a pre-shot routine that locks in the feels, and playing with your new stock shot under real conditions.</p>
     </div>
 
     <div class="day-block" data-day="13">
       <div class="day-header">
-        <h4>Day 13 — Pre-Shot Routine Build</h4>
-        <div style="display:flex;gap:8px;align-items:center">
+        <h4>Day 13 - Pre-Shot Routine Build</h4>
+        <div class="day-meta">
           <span class="duration">30 min | Range</span>
           <span class="chevron">▼</span>
         </div>
@@ -991,12 +2057,12 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
 
         <div class="drill-step">
           <div class="drill-num">1</div>
-          <div class="drill-text"><strong>Design your routine (10 min):</strong> Stand behind the ball. Pick your target line. Take one practice swing with your ONE swing thought (pick the one that helps most: "wide takeaway" or "rotate through" — not both). Address the ball. One look at the target. Go. The whole routine should take 15-20 seconds. Practice it 10 times without hitting a ball.</div>
+          <div class="drill-text"><strong>Design your routine (10 min):</strong> Stand behind the ball. Pick your target line. Take one practice swing with your ONE swing thought (pick the one that helps most: "wide takeaway" or "rotate through" - not both). Address the ball. One look at the target. Go. The whole routine should take 15-20 seconds. Practice it 10 times without hitting a ball.</div>
         </div>
 
         <div class="drill-step">
           <div class="drill-num">2</div>
-          <div class="drill-text"><strong>Routine + ball (20 min):</strong> Hit 30 balls. Every single one gets the full routine. No rapid-fire range balls — that builds bad habits. If you catch yourself skipping the routine, stop, step back, and restart.</div>
+          <div class="drill-text"><strong>Routine + ball (20 min):</strong> Hit 30 balls. Every single one gets the full routine. No rapid-fire range balls - that builds bad habits. If you catch yourself skipping the routine, stop, step back, and restart.</div>
         </div>
 
         <div class="callout green">
@@ -1008,8 +2074,8 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
 
     <div class="day-block" data-day="14">
       <div class="day-header">
-        <h4>Day 14 — Scoring Clubs Focus</h4>
-        <div style="display:flex;gap:8px;align-items:center">
+        <h4>Day 14 - Scoring Clubs Focus</h4>
+        <div class="day-meta">
           <span class="duration">45 min | Range</span>
           <span class="chevron">▼</span>
         </div>
@@ -1019,7 +2085,7 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
 
         <div class="drill-step">
           <div class="drill-num">1</div>
-          <div class="drill-text"><strong>Distance control ladder (20 min):</strong> With your PW, hit 5 balls each at: full, 3/4, 1/2 distance. Then 8-iron: full and 3/4. Then 6-iron: full. Observe your dispersion. The goal isn't just direction (draw vs. push) — it's also distance consistency. Note your landing zone spread for each club/distance.</div>
+          <div class="drill-text"><strong>Distance control ladder (20 min):</strong> With your PW, hit 5 balls each at: full, 3/4, 1/2 distance. Then 8-iron: full and 3/4. Then 6-iron: full. Observe your dispersion. The goal isn't just direction (draw vs. push) - it's also distance consistency. Note your landing zone spread for each club/distance.</div>
         </div>
 
         <div class="drill-step">
@@ -1032,11 +2098,11 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
           <div class="drill-text"><strong>5-ball challenge (10 min):</strong> Pick a green-sized target (30 yards wide). Hit 5 balls with your most troublesome iron. How many land on the "green"? This is your greens-in-regulation percentage with that club. Repeat with your second most troublesome iron.</div>
         </div>
 
-        <a href="https://www.youtube.com/watch?v=RgC-cMO-49w" target="_blank" class="video-link">
+        <a href="https://www.youtube.com/watch?v=Ne_oiv84XCw" target="_blank" class="video-link">
           <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
           <div class="video-info">
-            <div class="video-title">How to Pure Your Irons Consistently (Hit Straight)</div>
-            <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+            <div class="video-title">Educated Hands Fix Hooks, Slices, and Poor Contact</div>
+            <div class="video-coach">Danny Maude</div>
           </div>
         </a>
       </div></div>
@@ -1044,8 +2110,8 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
 
     <div class="day-block" data-day="15">
       <div class="day-header">
-        <h4>Day 15 — Full Simulation Round</h4>
-        <div style="display:flex;gap:8px;align-items:center">
+        <h4>Day 15 - Full Simulation Round</h4>
+        <div class="day-meta">
           <span class="duration">45 min | Range</span>
           <span class="chevron">▼</span>
         </div>
@@ -1067,8 +2133,8 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
 
     <div class="day-block" data-day="16">
       <div class="day-header">
-        <h4>Day 16 — Take It to the Course</h4>
-        <div style="display:flex;gap:8px;align-items:center">
+        <h4>Day 16 - Take It to the Course</h4>
+        <div class="day-meta">
           <span class="duration">Round Day</span>
           <span class="chevron">▼</span>
         </div>
@@ -1078,16 +2144,16 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
 
         <div class="drill-step">
           <div class="drill-num">1</div>
-          <div class="drill-text"><strong>Pre-round warm-up (15 min):</strong> Feet-together drill (10 balls). Stock draws (10 balls). 5 drivers. No more — save the good feels for the course.</div>
+          <div class="drill-text"><strong>Pre-round warm-up (15 min):</strong> Feet-together drill (10 balls). Stock draws (10 balls). 5 drivers. No more - save the good feels for the course.</div>
         </div>
 
         <div class="drill-step">
           <div class="drill-num">2</div>
           <div class="drill-text"><strong>On-course rules:</strong>
             <ul style="margin:8px 0 0 16px">
-              <li>ONE swing thought only — the one from Day 13</li>
+              <li>ONE swing thought only - the one from Day 13</li>
               <li>Full pre-shot routine on every full swing</li>
-              <li>Play your stock draw on every shot — no steering, no manipulation</li>
+              <li>Play your stock draw on every shot - no steering, no manipulation</li>
               <li>Accept results. Bad shots will happen. Don't change your approach mid-round.</li>
               <li>Track: fairways hit, greens in regulation, and which side you missed on</li>
             </ul>
@@ -1101,7 +2167,7 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
 
         <div class="callout">
           <div class="callout-title">Expectation Setting</div>
-          <p style="margin-bottom:0">Your first round with new mechanics will likely NOT be your best score. Scores often dip before they improve because you're fighting old habits under pressure. Trust that the range work is real. The scoring improvement comes after the mechanics become subconscious — usually rounds 3-5 with the new pattern.</p>
+          <p style="margin-bottom:0">Your first round with new mechanics will likely NOT be your best score. Scores often dip before they improve because you're fighting old habits under pressure. Trust that the range work is real. The scoring improvement comes after the mechanics become subconscious - usually rounds 3-5 with the new pattern.</p>
         </div>
       </div></div>
     </div>
@@ -1128,7 +2194,7 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
     <p><strong>What it fixes:</strong> Proves you can swing on a neutral or outside-in path. If you can't hit a fade, your path is still too far inside.</p>
     <p><strong>Setup:</strong> Open your stance 10-15 yards left of target. Ball position slightly forward of center.</p>
     <p><strong>Execution:</strong> Swing along your foot line (not at the target). Feel the club exit left after impact. The ball should start slightly left and curve gently right.</p>
-    <p><strong>Key insight:</strong> If your "fades" still draw or go straight, you're making progress — your path is moving toward neutral. If they still hook, you need more time with the gate drill.</p>
+    <p><strong>Key insight:</strong> If your "fades" still draw or go straight, you're making progress - your path is moving toward neutral. If they still hook, you need more time with the gate drill.</p>
   </div>
 
   <div class="card drill">
@@ -1136,7 +2202,7 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
     <h3 style="margin-top:0">Feet-Together Drill</h3>
     <p><strong>What it fixes:</strong> Sway, slide, early extension, getting stuck. Forces pure rotation.</p>
     <p><strong>Setup:</strong> Stand with feet touching, 7-iron.</p>
-    <p><strong>Execution:</strong> Make 3/4 swings. You'll feel your body must rotate to generate any power — you can't sway or slide. This automatically produces a more neutral path.</p>
+    <p><strong>Execution:</strong> Make 3/4 swings. You'll feel your body must rotate to generate any power - you can't sway or slide. This automatically produces a more neutral path.</p>
     <p><strong>Reps:</strong> 10-15 balls. Use as a warm-up drill for every session.</p>
   </div>
 
@@ -1163,7 +2229,7 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
     <h3 style="margin-top:0">9-Ball Grid Drill</h3>
     <p><strong>What it fixes:</strong> Builds conscious control of face-to-path relationship.</p>
     <p><strong>Setup:</strong> Place 9 balls in a 3×3 grid. Assign shot shapes: Row 1 = fade, Row 2 = straight, Row 3 = draw.</p>
-    <p><strong>Execution:</strong> Work through all 9, pausing between each ball to reset your setup for the intended shape. Use 7-iron. The goal is intentionality — knowing what you're doing with path and face, not just hoping.</p>
+    <p><strong>Execution:</strong> Work through all 9, pausing between each ball to reset your setup for the intended shape. Use 7-iron. The goal is intentionality - knowing what you're doing with path and face, not just hoping.</p>
     <p><strong>Reps:</strong> Once through the grid = one set. Do 2-3 sets per session when used.</p>
   </div>
 
@@ -1180,51 +2246,43 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
 <!-- ==================== VIDEO GUIDE ==================== -->
 <section id="videos">
   <h2>Video Guide</h2>
-  <p class="muted">Curated videos from your coaches, organized by topic. Watch in this order for maximum impact.</p>
+  <p class="muted">Curated videos from top YouTube coaches, organized by topic. Chris Mayson leads; watch in this order for maximum impact.</p>
 
-  <h3>Priority 1 — Understanding the Problem</h3>
+  <h3>Priority 1 - Understanding the Problem</h3>
   <p>Watch these first. They explain exactly why your pattern happens.</p>
 
-  <a href="https://www.youtube.com/watch?v=xZX0ApMN1r4" target="_blank" class="video-link">
+  <a href="https://www.youtube.com/watch?v=YveiDPsw0RA" target="_blank" class="video-link">
     <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
     <div class="video-info">
-      <div class="video-title">Control the Club Face at Impact — Straighter Ball Flight</div>
-      <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+      <div class="video-title">This Top Coach Might Have SOLVED Golf's #1 Problem</div>
+      <div class="video-coach">Chris Mayson - Golf Digest Top 50</div>
     </div>
   </a>
 
-  <a href="https://www.youtube.com/watch?v=yBr_9QxZseU" target="_blank" class="video-link">
+  <a href="https://www.youtube.com/watch?v=7kFC9WkriLM" target="_blank" class="video-link">
     <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
     <div class="video-info">
-      <div class="video-title">How to Get Unstuck in the Golf Swing</div>
-      <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+      <div class="video-title">Face to Path Explained</div>
+      <div class="video-coach">Martin Chuck - Tour Striker</div>
     </div>
   </a>
 
-  <a href="https://www.youtube.com/watch?v=qdpvS2kNZao" target="_blank" class="video-link">
+  <a href="https://www.youtube.com/watch?v=Mjh6Jl5GaJs" target="_blank" class="video-link">
     <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
     <div class="video-info">
-      <div class="video-title">How to Get Unstuck in Your Golf Swing (Part 2)</div>
-      <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+      <div class="video-title">Fix the Push-Hook: Swing More Left, Not More Right</div>
+      <div class="video-coach">Eric Cogorno</div>
     </div>
   </a>
 
-  <h3>Priority 2 — Fixing the Path</h3>
+  <h3>Priority 2 - Fixing the Path</h3>
   <p>Drills and feels to move your path from too-far-inside to neutral.</p>
-
-  <a href="https://www.youtube.com/watch?v=mNcP7mEmrJE" target="_blank" class="video-link">
-    <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-    <div class="video-info">
-      <div class="video-title">STOP Pushing the Ball Right (Hockey Stick + New Drills)</div>
-      <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
-    </div>
-  </a>
 
   <a href="https://www.youtube.com/watch?v=nyb11lvrSP0" target="_blank" class="video-link">
     <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
     <div class="video-info">
       <div class="video-title">The Coach of World #1s Added Width to My Swing</div>
-      <div class="video-coach">Chris Mayson — Golf Digest Top 50 Teacher</div>
+      <div class="video-coach">Chris Mayson - Golf Digest Top 50</div>
     </div>
   </a>
 
@@ -1232,59 +2290,67 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
     <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
     <div class="video-info">
       <div class="video-title">How to Curve the Ball (Train Your Game Ep. 12)</div>
-      <div class="video-coach">Chris Mayson</div>
+      <div class="video-coach">Chris Mayson - Golf Digest Top 50</div>
     </div>
   </a>
 
-  <a href="https://www.youtube.com/watch?v=3ydc4EgJvqU" target="_blank" class="video-link">
+  <a href="https://www.youtube.com/watch?v=YqZteIl1jss" target="_blank" class="video-link">
     <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
     <div class="video-info">
-      <div class="video-title">How to Get and Stay Unstuck in the Golf Swing</div>
-      <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+      <div class="video-title">The Most Reliable Downswing Drill for a Perfect Swing Path</div>
+      <div class="video-coach">Chris Mayson &amp; Kerrod Gray</div>
     </div>
   </a>
 
-  <h3>Priority 3 — Fixing the Hook Side</h3>
-
-  <a href="https://www.youtube.com/watch?v=uy7C7-6nhgM" target="_blank" class="video-link">
+  <a href="https://www.youtube.com/watch?v=ny9hfKw9U-A" target="_blank" class="video-link">
     <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
     <div class="video-info">
-      <div class="video-title">Stop Fighting with Your Hook and Pulled Golf Shots</div>
-      <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+      <div class="video-title">Swing Inconsistency? Here's What's Wrong</div>
+      <div class="video-coach">Tyler Ferrell - Golf Smart Academy</div>
     </div>
   </a>
 
-  <a href="https://www.youtube.com/watch?v=O_eu-2GDbDA" target="_blank" class="video-link">
+  <h3>Priority 3 - Fixing the Hook Side</h3>
+
+  <a href="https://www.youtube.com/watch?v=Q5RllnmsZbQ" target="_blank" class="video-link">
     <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
     <div class="video-info">
-      <div class="video-title">Quick Fix: Pull, Hook & Pull Hook</div>
-      <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+      <div class="video-title">Strike Your Irons Pure - Face to Path for Hookers</div>
+      <div class="video-coach">Danny Maude</div>
     </div>
   </a>
 
-  <h3>Priority 4 — Ball Striking & Irons</h3>
-
-  <a href="https://www.youtube.com/watch?v=OzRDyfIrPEk" target="_blank" class="video-link">
+  <a href="https://www.youtube.com/watch?v=Ne_oiv84XCw" target="_blank" class="video-link">
     <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
     <div class="video-info">
-      <div class="video-title">The Best Golf Drills to Instantly Improve Ball Striking</div>
-      <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+      <div class="video-title">Educated Hands Fix Hooks, Slices, and Poor Contact</div>
+      <div class="video-coach">Danny Maude</div>
     </div>
   </a>
 
-  <a href="https://www.youtube.com/watch?v=JsT2ASvaSHY" target="_blank" class="video-link">
+  <h3>Priority 4 - Ball Striking & Irons</h3>
+
+  <a href="https://www.youtube.com/watch?v=qjA9kTMAv20" target="_blank" class="video-link">
     <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
     <div class="video-info">
-      <div class="video-title">3 Tips to Help You Hit Your Irons Consistently</div>
-      <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+      <div class="video-title">How to Sequence Your Golf Swing Like a Pro</div>
+      <div class="video-coach">Chris Mayson &amp; Kerrod Gray</div>
     </div>
   </a>
 
-  <a href="https://www.youtube.com/watch?v=RgC-cMO-49w" target="_blank" class="video-link">
+  <a href="https://www.youtube.com/watch?v=9vyUw3TUPwc" target="_blank" class="video-link">
     <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
     <div class="video-info">
-      <div class="video-title">How to Pure Your Irons Consistently</div>
-      <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+      <div class="video-title">How to Hit Ball First, Then the Ground</div>
+      <div class="video-coach">Clay Ballard - Top Speed Golf</div>
+    </div>
+  </a>
+
+  <a href="https://www.youtube.com/watch?v=TTxOaijjAi8" target="_blank" class="video-link">
+    <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    <div class="video-info">
+      <div class="video-title">Always Release the Club Like This</div>
+      <div class="video-coach">Danny Maude</div>
     </div>
   </a>
 
@@ -1292,51 +2358,51 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
     <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
     <div class="video-info">
       <div class="video-title">Can a Top 50 Golf Instructor Fix My Swing?</div>
-      <div class="video-coach">Chris Mayson Lesson</div>
+      <div class="video-coach">Chris Mayson - Golf Digest Top 50</div>
     </div>
   </a>
 
-  <h3>Priority 5 — Driver</h3>
+  <h3>Priority 5 - Driver</h3>
 
-  <a href="https://www.youtube.com/watch?v=zDiwPiWM7qM" target="_blank" class="video-link">
+  <a href="https://www.youtube.com/watch?v=goyqzBFVz9g" target="_blank" class="video-link">
     <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
     <div class="video-info">
-      <div class="video-title">How to Hit a Driver Straight</div>
-      <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+      <div class="video-title">How to Create Power in the Golf Swing</div>
+      <div class="video-coach">Chris Mayson &amp; Kerrod Gray</div>
     </div>
   </a>
 
-  <a href="https://www.youtube.com/watch?v=qxym3MwkSG4" target="_blank" class="video-link">
+  <a href="https://www.youtube.com/watch?v=abgA4IJfWac" target="_blank" class="video-link">
     <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
     <div class="video-info">
-      <div class="video-title">The Real Secret to Hitting Your Driver Straight</div>
-      <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+      <div class="video-title">To Hit Driver Straight, Always Do This Before Every Swing</div>
+      <div class="video-coach">Danny Maude</div>
     </div>
   </a>
 
-  <a href="https://www.youtube.com/watch?v=YveiDPsw0RA" target="_blank" class="video-link">
+  <a href="https://www.youtube.com/watch?v=uuaxsvl5hac" target="_blank" class="video-link">
     <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
     <div class="video-info">
-      <div class="video-title">This Top Coach Might Have SOLVED Golf's #1 Problem</div>
-      <div class="video-coach">Featuring Chris Mayson</div>
+      <div class="video-title">Hit Your Driver Straighter in 5 Minutes</div>
+      <div class="video-coach">Athletic Motion Golf</div>
     </div>
   </a>
 
-  <h3>Priority 6 — Release & Wrist Control</h3>
+  <h3>Priority 6 - Rotation, Release & Takeaway</h3>
 
-  <a href="https://www.youtube.com/watch?v=SW5nwU-BXSI" target="_blank" class="video-link">
+  <a href="https://www.youtube.com/watch?v=0nKboAo9HvA" target="_blank" class="video-link">
     <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
     <div class="video-info">
-      <div class="video-title">Wrist Release: The Secret to Impact</div>
-      <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+      <div class="video-title">This Trick Finally Fixes Standing Up in the Golf Swing</div>
+      <div class="video-coach">Eric Cogorno</div>
     </div>
   </a>
 
-  <a href="https://www.youtube.com/watch?v=WcOdGVVttBQ" target="_blank" class="video-link">
+  <a href="https://www.youtube.com/watch?v=Hku3K7h6HpA" target="_blank" class="video-link">
     <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
     <div class="video-info">
-      <div class="video-title">How to Release the Golf Club Powerfully</div>
-      <div class="video-coach">Adam Bazalgette — Scratch Golf Academy</div>
+      <div class="video-title">Backswing Breakthrough: How to Achieve the Ideal Pivot</div>
+      <div class="video-coach">George Gankas - GG Swing Tips</div>
     </div>
   </a>
 
@@ -1344,7 +2410,7 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
     <div class="video-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
     <div class="video-info">
       <div class="video-title">Takeaway and Backswing Training</div>
-      <div class="video-coach">Michael Alexander — Alexander Golf</div>
+      <div class="video-coach">Michael Alexander - Alexander Golf</div>
     </div>
   </a>
 </section>
@@ -1384,12 +2450,12 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
   <div class="callout">
     <div class="callout-title">Filming Tips</div>
     <p style="margin-bottom:0">
-      <strong>Use a tripod or phone mount</strong> — hand-held video is nearly useless for swing analysis.<br><br>
+      <strong>Use a tripod or phone mount</strong> - hand-held video is nearly useless for swing analysis.<br><br>
       <strong>Film 5 swings from each angle</strong> with the same club (7-iron is ideal).<br><br>
-      <strong>Use slow-motion mode</strong> — 240fps on iPhone (Settings → Camera → Record Slo-mo). This lets you scrub through impact frame-by-frame.<br><br>
-      <strong>Film in good light</strong> — avoid backlighting (don't face the sun).<br><br>
-      <strong>Include the ball flight</strong> — let the camera run until the ball lands. Ball flight tells the story.<br><br>
-      <strong>Don't "perform"</strong> — hit normal shots. The point is to capture your real swing, not your best swing.
+      <strong>Use slow-motion mode</strong> - 240fps on iPhone (Settings → Camera → Record Slo-mo). This lets you scrub through impact frame-by-frame.<br><br>
+      <strong>Film in good light</strong> - avoid backlighting (don't face the sun).<br><br>
+      <strong>Include the ball flight</strong> - let the camera run until the ball lands. Ball flight tells the story.<br><br>
+      <strong>Don't "perform"</strong> - hit normal shots. The point is to capture your real swing, not your best swing.
     </p>
   </div>
 
@@ -1397,11 +2463,11 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
   <div class="card">
     <p>When you review your video, check these specific things:</p>
     <ul style="margin: 8px 0 0 16px;">
-      <li><strong>DTL — Takeaway:</strong> Does the clubhead drag inside immediately? It should track along or slightly inside the target line for the first foot.</li>
-      <li><strong>DTL — Top of backswing:</strong> Where is the club shaft pointing? If it points right of target (across the line), you're set up to get stuck.</li>
-      <li><strong>DTL — Downswing:</strong> Does the club drop behind your body? It should slot onto or just under the backswing plane.</li>
-      <li><strong>FO — Impact:</strong> Have your hips rotated open, or are they still square/thrusting toward the ball?</li>
-      <li><strong>FO — Follow-through:</strong> Is your chest facing the target at finish? Or are you hanging back with a stalled turn?</li>
+      <li><strong>DTL - Takeaway:</strong> Does the clubhead drag inside immediately? It should track along or slightly inside the target line for the first foot.</li>
+      <li><strong>DTL - Top of backswing:</strong> Where is the club shaft pointing? If it points right of target (across the line), you're set up to get stuck.</li>
+      <li><strong>DTL - Downswing:</strong> Does the club drop behind your body? It should slot onto or just under the backswing plane.</li>
+      <li><strong>FO - Impact:</strong> Have your hips rotated open, or are they still square/thrusting toward the ball?</li>
+      <li><strong>FO - Follow-through:</strong> Is your chest facing the target at finish? Or are you hanging back with a stalled turn?</li>
     </ul>
   </div>
 </section>
@@ -1409,23 +2475,23 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
 <!-- ==================== COURSE STRATEGY ==================== -->
 <section id="strategy">
   <h2>Course Strategy for the 70s</h2>
-  <p class="muted">Beyond ball striking — the scoring framework to break 80 consistently.</p>
+  <p class="muted">Beyond ball striking - the scoring framework to break 80 consistently.</p>
 
   <div class="card key-point">
     <span class="card-label key">The Math</span>
-    <h3 style="margin-top:0">Shooting 79 or Better — What It Takes</h3>
+    <h3 style="margin-top:0">Shooting 79 or Better - What It Takes</h3>
     <p>To shoot in the 70s, you need roughly:</p>
     <ul style="margin: 8px 0 0 16px;">
-      <li><strong>8-10 fairways</strong> (57-71%) — eliminating the two-way miss gets you here</li>
-      <li><strong>10-12 greens in regulation</strong> — ball striking consistency from 150 yards in</li>
-      <li><strong>30-32 putts</strong> — no three-putts, make a few 6-10 footers</li>
-      <li><strong>No more than 1 double bogey</strong> — course management, not heroics</li>
-      <li><strong>2-4 birdies</strong> — capitalize on short approach shots</li>
+      <li><strong>8-10 fairways</strong> (57-71%) - eliminating the two-way miss gets you here</li>
+      <li><strong>10-12 greens in regulation</strong> - ball striking consistency from 150 yards in</li>
+      <li><strong>30-32 putts</strong> - no three-putts, make a few 6-10 footers</li>
+      <li><strong>No more than 1 double bogey</strong> - course management, not heroics</li>
+      <li><strong>2-4 birdies</strong> - capitalize on short approach shots</li>
     </ul>
   </div>
 
   <div class="card">
-    <h3 style="margin-top:0">Tee Shot Strategy — Eliminate One Side</h3>
+    <h3 style="margin-top:0">Tee Shot Strategy - Eliminate One Side</h3>
     <p>Once you have a stock 3-5 yard draw, your strategy changes fundamentally:</p>
     <ul style="margin: 8px 0 0 16px;">
       <li><strong>Aim at the right edge of the fairway.</strong> Your draw brings it back to center. If it goes straight (no draw), you're still in the right side of the fairway. The left side of the course is eliminated.</li>
@@ -1435,7 +2501,7 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
   </div>
 
   <div class="card">
-    <h3 style="margin-top:0">Approach Shot Strategy — Aim for the Fat of the Green</h3>
+    <h3 style="margin-top:0">Approach Shot Strategy - Aim for the Fat of the Green</h3>
     <ul style="margin: 8px 0 0 16px;">
       <li><strong>Stop firing at pins.</strong> From 150+ yards, aim at the center of the green. GIR percentage matters more than proximity. A 30-foot putt from the green is better than a chip from a bunker.</li>
       <li><strong>Know your distances.</strong> Spend 10 minutes on the range hitting each iron 10 times and noting your average carry. Most amateurs overestimate their distances by 5-10 yards, which means consistently coming up short.</li>
@@ -1448,8 +2514,8 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
     <p>From the high 80s to the 70s, the biggest shift is mental:</p>
     <ul style="margin: 8px 0 0 16px;">
       <li><strong>Bogey is not a failure.</strong> You can shoot 79 with 7 bogeys and 4 birdies. Stop compounding bad holes by trying hero recovery shots.</li>
-      <li><strong>After a bad tee shot:</strong> Punch out to the fairway. Wedge on. Two-putt. Walk away with bogey. That's a 5 on a par 4 — not a 7 after trying to thread a gap in the trees.</li>
-      <li><strong>Par 5s are your scoring holes.</strong> Two good shots and a wedge to the green. These are where your birdies come from — not from aggressive driver plays on tight par 4s.</li>
+      <li><strong>After a bad tee shot:</strong> Punch out to the fairway. Wedge on. Two-putt. Walk away with bogey. That's a 5 on a par 4 - not a 7 after trying to thread a gap in the trees.</li>
+      <li><strong>Par 5s are your scoring holes.</strong> Two good shots and a wedge to the green. These are where your birdies come from - not from aggressive driver plays on tight par 4s.</li>
     </ul>
   </div>
 
@@ -1465,92 +2531,209 @@ p.muted { color: var(--text-light); font-size: 0.95rem; }
 </section>
 
 <!-- Footer -->
-<section style="text-align:center;padding:40px 0 60px">
-  <p class="muted" style="font-size:0.85rem">Built with research from Adam Bazalgette (Scratch Golf Academy), Chris Mayson (Golf Digest Top 50), and Michael Alexander (Alexander Golf).</p>
-  <p class="muted" style="font-size:0.8rem;margin-top:4px">Plan designed for a right-handed golfer working from the high 80s to consistent 70s.</p>
+<section class="site-footer">
+  <p class="muted">Built with research from Chris Mayson (Golf Digest Top 50), Danny Maude, Eric Cogorno, Tyler Ferrell, Clay Ballard, George Gankas, Athletic Motion Golf, Martin Chuck, and Michael Alexander.</p>
+  <p class="muted">Plan designed for a right-handed golfer working from the high 80s to consistent 70s.</p>
 </section>
 
 </div>
 
 <script>
 // Week tabs
+document.querySelector('.week-tabs')?.setAttribute('role', 'tablist');
 document.querySelectorAll('.week-tab').forEach(tab => {
+  tab.setAttribute('role', 'tab');
+  tab.setAttribute('aria-controls', 'week-' + tab.dataset.week);
+  tab.setAttribute('aria-selected', tab.classList.contains('active') ? 'true' : 'false');
   tab.addEventListener('click', () => {
-    document.querySelectorAll('.week-tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.week-content').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.week-tab').forEach(t => {
+      t.classList.remove('active');
+      t.setAttribute('aria-selected', 'false');
+    });
+    document.querySelectorAll('.week-content').forEach(c => {
+      c.classList.remove('active');
+      c.setAttribute('aria-hidden', 'true');
+    });
     tab.classList.add('active');
-    document.getElementById('week-' + tab.dataset.week).classList.add('active');
+    tab.setAttribute('aria-selected', 'true');
+    const panel = document.getElementById('week-' + tab.dataset.week);
+    panel.classList.add('active');
+    panel.setAttribute('aria-hidden', 'false');
   });
 });
-
-// Day accordions
-document.querySelectorAll('.day-block').forEach(block => {
-  block.querySelector('.day-header').addEventListener('click', () => {
-    block.classList.toggle('open');
-  });
-});
-
-// Checklist checkboxes
-document.querySelectorAll('.checklist li').forEach(li => {
-  li.addEventListener('click', () => {
-    li.classList.toggle('checked');
-    updateProgress();
-  });
+document.querySelectorAll('.week-content').forEach(panel => {
+  panel.setAttribute('role', 'tabpanel');
+  panel.setAttribute('aria-hidden', panel.classList.contains('active') ? 'false' : 'true');
 });
 
 // Progress tracking via localStorage
-const STORAGE_KEY = 'golf-plan-progress';
+const STORAGE_KEY = 'golf-plan-progress-v2';
+const dayBlocks = Array.from(document.querySelectorAll('.day-block'));
+const DEFAULT_COMPLETED_DAYS = ['1', '2', '3', '4'];
+const todayDoneButton = document.getElementById('today-done-toggle');
+
+function setDayComplete(block, isComplete) {
+  block.classList.toggle('completed', isComplete);
+  const button = block.querySelector('.done-toggle');
+  if (button) {
+    button.setAttribute('aria-pressed', isComplete ? 'true' : 'false');
+    button.textContent = isComplete ? 'Done' : 'Mark done';
+  }
+  syncTodayButton();
+}
+
+function saveProgress() {
+  const completedDays = dayBlocks
+    .filter(block => block.classList.contains('completed'))
+    .map(block => block.dataset.day);
+
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({ completedDays }));
+  updateProgress();
+}
 
 function loadProgress() {
   try {
     const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-    if (saved.completedDays) {
-      updateProgressBar(saved.completedDays.length, 16);
-    }
-  } catch(e) {}
-}
+    const completedDays = Array.isArray(saved.completedDays)
+      ? saved.completedDays.map(String)
+      : DEFAULT_COMPLETED_DAYS;
 
-function updateProgress() {
-  const checked = document.querySelectorAll('.checklist li.checked').length;
-  const total = document.querySelectorAll('.checklist li').length;
-  if (total > 0) {
-    updateProgressBar(checked, total);
+    dayBlocks.forEach(block => {
+      setDayComplete(block, completedDays.includes(block.dataset.day));
+    });
+
+    updateProgress();
+  } catch(e) {
+    updateProgress();
   }
 }
 
-function updateProgressBar(done, total) {
-  const pct = Math.round((done / total) * 100);
-  document.getElementById('progress-pct').textContent = pct + '%';
-  document.getElementById('progress-fill').style.width = pct + '%';
+function syncTodayButton() {
+  if (!todayDoneButton) return;
+  const dayFive = document.querySelector('.day-block[data-day="5"]');
+  const isComplete = Boolean(dayFive?.classList.contains('completed'));
+  todayDoneButton.setAttribute('aria-pressed', isComplete ? 'true' : 'false');
+  todayDoneButton.lastChild.textContent = isComplete ? 'Done' : 'Mark done';
 }
 
-// Smooth scroll for nav
-document.querySelectorAll('.nav a').forEach(link => {
+// Day accordions and completion controls
+dayBlocks.forEach(block => {
+  const header = block.querySelector('.day-header');
+  const meta = block.querySelector('.day-meta');
+  const chevron = block.querySelector('.chevron');
+  const openButton = document.createElement('button');
+  const doneButton = document.createElement('button');
+  openButton.type = 'button';
+  openButton.className = 'day-open-toggle';
+  openButton.setAttribute('aria-expanded', 'false');
+  openButton.setAttribute('aria-label', 'Open details for day ' + block.dataset.day);
+  openButton.appendChild(chevron);
+
+  doneButton.type = 'button';
+  doneButton.className = 'done-toggle';
+  doneButton.setAttribute('aria-pressed', 'false');
+  doneButton.textContent = 'Mark done';
+  meta.insertBefore(doneButton, meta.firstChild);
+  meta.appendChild(openButton);
+
+  const toggleOpen = () => {
+    block.classList.toggle('open');
+    const isOpen = block.classList.contains('open');
+    openButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    openButton.setAttribute('aria-label', (isOpen ? 'Close' : 'Open') + ' details for day ' + block.dataset.day);
+  };
+
+  header.addEventListener('click', event => {
+    if (event.target.closest('button')) return;
+    toggleOpen();
+  });
+
+  openButton.addEventListener('click', event => {
+    event.stopPropagation();
+    toggleOpen();
+  });
+
+  doneButton.addEventListener('click', event => {
+    event.stopPropagation();
+    setDayComplete(block, !block.classList.contains('completed'));
+    saveProgress();
+  });
+});
+
+todayDoneButton?.addEventListener('click', () => {
+  const dayFive = document.querySelector('.day-block[data-day="5"]');
+  if (!dayFive) return;
+  setDayComplete(dayFive, !dayFive.classList.contains('completed'));
+  saveProgress();
+});
+
+function updateProgress() {
+  const done = dayBlocks.filter(block => block.classList.contains('completed')).length;
+  updateProgressBar(done, dayBlocks.length);
+}
+
+function updateProgressBar(done, total) {
+  const ratio = total > 0 ? done / total : 0;
+  const pct = Math.round(ratio * 100);
+  document.getElementById('progress-pct').textContent = pct + '%';
+  document.getElementById('progress-fill').style.setProperty('--progress-scale', ratio.toFixed(4));
+  document.getElementById('home-progress-count').textContent = done + ' of ' + total + ' days';
+  document.getElementById('home-progress-pct').textContent = pct + '% complete';
+  document.getElementById('home-progress-fill').style.setProperty('--progress-scale', ratio.toFixed(4));
+}
+
+function getNavScrollOffset(extra = 8) {
+  const nav = document.querySelector('.nav');
+  return (nav ? nav.getBoundingClientRect().height : 72) + extra;
+}
+
+function getDocumentTop(el) {
+  return el.getBoundingClientRect().top + window.scrollY;
+}
+
+function scrollToTarget(target) {
+  window.scrollTo({
+    top: getDocumentTop(target) - getNavScrollOffset(),
+    behavior: 'smooth'
+  });
+}
+
+// Smooth scroll for in-page jumps
+document.querySelectorAll('.nav a, .next-session a, .hero-menu, .hero-flag').forEach(link => {
   link.addEventListener('click', (e) => {
+    const href = link.getAttribute('href');
+    if (!href || !href.startsWith('#')) return;
+    const target = document.querySelector(href);
+    if (!target) return;
     e.preventDefault();
-    const target = document.querySelector(link.getAttribute('href'));
-    if (target) {
-      const navHeight = document.querySelector('.nav').offsetHeight;
-      window.scrollTo({
-        top: target.offsetTop - navHeight - 10,
-        behavior: 'smooth'
-      });
-    }
+    scrollToTarget(target);
   });
 });
 
 // Highlight active nav on scroll
+const navTargets = [...document.querySelectorAll('.nav a')]
+  .map(link => {
+    const href = link.getAttribute('href');
+    if (!href || !href.startsWith('#')) return null;
+    const el = document.querySelector(href);
+    return el ? { id: href.slice(1), el } : null;
+  })
+  .filter(Boolean);
+
 window.addEventListener('scroll', () => {
-  const navHeight = document.querySelector('.nav').offsetHeight;
-  const sections = document.querySelectorAll('section[id]');
-  let current = '';
-  sections.forEach(section => {
-    if (window.scrollY >= section.offsetTop - navHeight - 60) {
-      current = section.id;
-    }
+  const scrollPos = window.scrollY + getNavScrollOffset(20);
+  let current = navTargets[0]?.id || '';
+  navTargets.forEach(({ id, el }) => {
+    if (scrollPos >= getDocumentTop(el)) current = id;
   });
   document.querySelectorAll('.nav a').forEach(link => {
-    link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+    const isActive = link.getAttribute('href') === '#' + current;
+    link.classList.toggle('active', isActive);
+    if (isActive) {
+      link.setAttribute('aria-current', 'true');
+    } else {
+      link.removeAttribute('aria-current');
+    }
   });
 });
 
