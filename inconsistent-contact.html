@@ -819,8 +819,8 @@ p.muted { color: var(--muted); font-size: 0.95rem; }
   border-color: var(--green-deep);
 }
 
-.week-content { display: none; }
-.week-content.active { display: block; }
+.week-content { display: block; scroll-margin-top: 92px; }
+.week-content + .week-content { margin-top: 10px; }
 
 /* Day blocks */
 .day-block {
@@ -2727,31 +2727,26 @@ p.muted { color: var(--muted); font-size: 0.95rem; }
 </div>
 
 <script>
-// Week tabs
+// Week quick-nav (all weeks shown at once; tabs scroll to each)
 document.querySelector('.week-tabs')?.setAttribute('role', 'tablist');
 document.querySelectorAll('.week-tab').forEach(tab => {
   tab.setAttribute('role', 'tab');
   tab.setAttribute('aria-controls', 'week-' + tab.dataset.week);
-  tab.setAttribute('aria-selected', tab.classList.contains('active') ? 'true' : 'false');
   tab.addEventListener('click', () => {
-    document.querySelectorAll('.week-tab').forEach(t => {
-      t.classList.remove('active');
-      t.setAttribute('aria-selected', 'false');
-    });
-    document.querySelectorAll('.week-content').forEach(c => {
-      c.classList.remove('active');
-      c.setAttribute('aria-hidden', 'true');
-    });
+    document.querySelectorAll('.week-tab').forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
-    tab.setAttribute('aria-selected', 'true');
     const panel = document.getElementById('week-' + tab.dataset.week);
-    panel.classList.add('active');
-    panel.setAttribute('aria-hidden', 'false');
+    if (panel) {
+      window.scrollTo({
+        top: panel.getBoundingClientRect().top + window.scrollY - getNavScrollOffset(),
+        behavior: 'smooth'
+      });
+    }
   });
 });
 document.querySelectorAll('.week-content').forEach(panel => {
-  panel.setAttribute('role', 'tabpanel');
-  panel.setAttribute('aria-hidden', panel.classList.contains('active') ? 'false' : 'true');
+  panel.setAttribute('role', 'region');
+  panel.setAttribute('aria-hidden', 'false');
 });
 
 // Progress tracking via localStorage
