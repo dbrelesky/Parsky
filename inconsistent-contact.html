@@ -114,10 +114,11 @@ body::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: url("design/wallpaper-hero-crop.png") center top / cover no-repeat;
-  animation: ken-burns 18s ease-in-out infinite alternate;
+  background:
+    radial-gradient(ellipse 130% 80% at 50% -8%, oklch(48% 0.11 152), transparent 58%),
+    radial-gradient(circle at 80% 16%, oklch(74% 0.13 84 / 0.5), transparent 42%),
+    linear-gradient(180deg, oklch(33% 0.085 152), oklch(16% 0.05 150) 68%, oklch(10% 0.03 150));
   z-index: -1;
-  will-change: transform;
 }
 .hero-wave {
   position: absolute;
@@ -241,12 +242,14 @@ body::before {
 }
 .hero-inner {
   position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  white-space: nowrap;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 clamp(20px, 6vw, 40px) 9%;
 }
 .hero h1 {
   font-family: var(--font-display);
@@ -1358,7 +1361,7 @@ p.muted { color: var(--muted); font-size: 0.95rem; }
     content: '';
     position: absolute;
     inset: -36px -36px -36px 0;
-    background: url("design/wallpaper-hero-crop.png") var(--flank-image-x, right) top / var(--hero-column) auto no-repeat;
+    background: linear-gradient(160deg, oklch(34% 0.08 152), oklch(16% 0.05 150));
     filter: blur(22px) saturate(1.12) brightness(0.94);
     opacity: 0.78;
     transform: scale(var(--flank-scale, 1.08));
